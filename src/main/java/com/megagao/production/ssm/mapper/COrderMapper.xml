@@ -30,6 +30,7 @@
 	    <result column="product_name" property="productName" jdbcType="VARCHAR" />
 	    <result column="product_type" property="productType" jdbcType="VARCHAR" />
 	    <result column="drawing" property="drawing" jdbcType="VARCHAR" />
+        <result column="company_id" property="companyId" jdbcType="VARCHAR" />
 	</association>
 	</resultMap>
 	
@@ -52,7 +53,7 @@
 			product.product_id,
 			product_name
 		FROM
-			c_order
+        (SELECT * FROM c_order WHERE c_order.company_id="1")c_order
 		LEFT JOIN custom ON c_order.custom_id = custom.custom_id
 		LEFT JOIN product ON c_order.product_id = product.product_id
 		<if test="status!=null">
