@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>制造物联中间件系统</title>
+<title>云平台ERP系统</title>
 <style type="text/css">
 .content {
 	padding: 10px 10px 10px 10px;
@@ -31,7 +31,7 @@
 					<div style="position:relative;">
 						<div style="text-align:right;font-size:15px;margin:2px 0 0 0;">
 							<span style="display:inline-block;font-size:20px;color:#c1dff7;margin:0 0 8px 0;">
-								计算机科学与技术学院
+								云平台ERP系统
 							</span><br/>
 							
 							<span style="color:#c1dff7;">${activeUser.rolename}:</span>
@@ -63,9 +63,9 @@
 			<!---------------------------------------------------->
 		</div>
 
-		<div title="计划进度" data-options="selected:true" style="padding:10px;">
+		<div title="订单系统" data-options="selected:true" style="padding:10px;">
 			<ul id="scheduleMonitor" class="easyui-tree" data-options="animate:true,lines:true">
-				<li><span>计划进度</span>
+				<li><span>订单系统</span>
 					<ul>
 						<li id=11 data-options="attributes:{'url':'order/find'}">订单管理</li>
 					</ul>
@@ -101,7 +101,7 @@
 			</ul>
 		</div>
 
-		<div title="工艺监控" data-options="selected:true" style="padding:10px">
+		<div title="工资核算" data-options="selected:true" style="padding:10px">
 			<ul id="technologyMonitor" class="easyui-tree" data-options="animate:true,lines:true">
 				<li><span>工艺监控</span>
 					<ul>
@@ -114,10 +114,10 @@
 			</ul>
 		</div>
 		
-		<div title="物料监控" data-options="selected:true" style="padding:10px">
+		<div title="仓库系统" data-options="selected:true" style="padding:10px">
 		
 			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
-				<li><span>物料监控 </span>
+				<li><span>仓库系统 </span>
 					<ul>
 						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
 						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
@@ -127,10 +127,10 @@
 			</ul>
 		</div>
 		
-		<div title="质量监控" data-options="selected:true" style="padding:10px;">
+		<div title="售后管理" data-options="selected:true" style="padding:10px;">
 			<ul id="qualifyMonitor" class="easyui-tree"
 				data-options="animate:true,lines:true">
-				<li><span>质量监控</span>
+				<li><span>售后管理</span>
 					<ul>
 						<li id=51 data-options="attributes:{'url':'unqualify/find'}">不合格品管理</li>
 						<li id=52 data-options="attributes:{'url':'measure/find'}">成品计量质检</li>
@@ -143,10 +143,10 @@
 
 		</div>
 		
-		<div title="人员监控" data-options="selected:true" style="padding:10px">
+		<div title="人员管理" data-options="selected:true" style="padding:10px">
 			<ul id="employeeMonitor" class="easyui-tree"
 				data-options="animate:true,lines:true">
-				<li><span>人员监控</span>
+				<li><span>人员管理</span>
 					<ul>
 						<li id=61 data-options="attributes:{'url':'department/find'}">部门管理</li>
 					</ul>
