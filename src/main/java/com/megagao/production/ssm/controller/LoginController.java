@@ -7,6 +7,9 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import com.megagao.production.ssm.domain.authority.SysUser;
+import com.megagao.production.ssm.service.SysService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +31,8 @@ public class LoginController {
 	/**
 	 * shiro ajax登录 
 	 */
+	@Autowired
+	private SysService sysService;
 	@RequestMapping(value = "/ajaxLogin")
 	@ResponseBody
 	public Map<String,Object> ajaxLogin(@RequestParam String username,
@@ -53,6 +58,13 @@ public class LoginController {
 	    	UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 	        try{
 	            currentUser.login(token);
+	            //add by zdq 将company_id放到session中
+				SysUser sysUser = sysService.getSysUserByName(username);
+				System.out.println("2222222222222222"+sysUser.getCompany_id());
+				session.setAttribute("company_id",sysUser.getCompany_id());
+				//从session中获取company_id
+				//String company_id=(String)session.getAttribute("company_id");
+				//System.out.println("dddddddddd"+cid);
 	        }catch(UnknownAccountException ex){
 	        	map.put("msg", "account_error");
 	        }catch(IncorrectCredentialsException ex){
