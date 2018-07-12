@@ -60,8 +60,8 @@ public class LoginController {
 	            currentUser.login(token);
 	            //add by zdq 将company_id放到session中
 				SysUser sysUser = sysService.getSysUserByName(username);
-				System.out.println("2222222222222222"+sysUser.getCompany_id());
-				session.setAttribute("company_id",sysUser.getCompany_id());
+				System.out.println("2222222222222222"+sysUser.getCompanyId());
+				session.setAttribute("company_id",sysUser.getCompanyId());
 				//从session中获取company_id
 				//String company_id=(String)session.getAttribute("company_id");
 				//System.out.println("dddddddddd"+cid);
