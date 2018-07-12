@@ -22,6 +22,16 @@ public class SysUser {
 	@Size(max=36, message="角色编号非法！")
     private String roleId;
 
+	private String companyId;
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+
 	public String getId() {
 		return id;
 	}
