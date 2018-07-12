@@ -164,7 +164,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, locked
+    id, username, password, locked, company_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="sysUserExample" >
     select
