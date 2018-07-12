@@ -22,6 +22,8 @@ public class MaterialConsumeVO {
 
     private String note;
 
+    private String companyId;
+
     public String getConsumeId() {
         return consumeId;
     }
@@ -84,5 +86,13 @@ public class MaterialConsumeVO {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

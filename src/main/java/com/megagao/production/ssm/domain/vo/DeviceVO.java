@@ -10,6 +10,8 @@ public class DeviceVO extends Device{
 
 	private String deviceKeeper;
 
+	private String companyId;
+
 	public String getDeviceIdd() {
 		return deviceIdd;
 	}
@@ -32,6 +34,14 @@ public class DeviceVO extends Device{
 
 	public void setDeviceKeeper(String deviceKeeper) {
 		this.deviceKeeper = deviceKeeper;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 
 	

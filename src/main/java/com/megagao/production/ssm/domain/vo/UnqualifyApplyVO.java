@@ -6,6 +6,8 @@ public class UnqualifyApplyVO extends UnqualifyApply {
 	private String productName;
 
 	private String empName;
+
+	private String companyId;
 	
 	public String getProductName() {
 		return productName;
@@ -21,5 +23,13 @@ public class UnqualifyApplyVO extends UnqualifyApply {
 
 	public void setEmpName(String empName) {
 		this.empName = empName;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 }

@@ -42,6 +42,9 @@ public class FinalCountCheck {
     @Size(max=5000, message="{note.length.error}")
     private String note;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     public String getfCountCheckId() {
         return fCountCheckId;
     }
@@ -136,5 +139,13 @@ public class FinalCountCheck {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

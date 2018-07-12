@@ -22,6 +22,8 @@ public class UserVO {
 
     private String roleId;
 
+    private String companyId;
+
     public String getId() {
         return id;
     }
@@ -68,5 +70,13 @@ public class UserVO {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

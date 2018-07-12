@@ -16,6 +16,9 @@ public class Process {
 	@Max(value=999999999, message="单件定额工时不能超过999999999")
     private Integer quota;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     public String getProcessId() {
         return processId;
     }
@@ -46,5 +49,13 @@ public class Process {
 
     public void setQuota(Integer quota) {
         this.quota = quota;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

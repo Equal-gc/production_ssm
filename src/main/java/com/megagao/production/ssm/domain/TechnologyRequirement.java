@@ -13,6 +13,9 @@ public class TechnologyRequirement {
     @Size(max=2000, message="工艺要求的长度限制在2000个字符之内")
     private String requirement;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     private Date addTime;
 
     private Date reviseTime;
@@ -55,5 +58,13 @@ public class TechnologyRequirement {
 
     public void setReviseTime(Date reviseTime) {
         this.reviseTime = reviseTime;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

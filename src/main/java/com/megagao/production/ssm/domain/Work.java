@@ -20,6 +20,9 @@ public class Work {
 	@Size(max=40, message="{id.length.error}")
     private String deviceId;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     private Integer rating;
 
     public String getWorkId() {
@@ -68,5 +71,13 @@ public class Work {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

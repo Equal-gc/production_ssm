@@ -11,6 +11,8 @@ public class Task {
 
     private Long workingHours;
 
+    private String companyId;
+
     public String getTaskId() {
         return taskId;
     }
@@ -49,5 +51,13 @@ public class Task {
 
     public void setWorkingHours(Long workingHours) {
         this.workingHours = workingHours;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

@@ -34,6 +34,9 @@ public class Technology {
 	@Max(value=999999999, message="超负荷工序能力不能超过999999999")
     private Integer overfulfilCapacity;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     public String getTechnologyId() {
         return technologyId;
     }
@@ -104,5 +107,13 @@ public class Technology {
 
     public void setOverfulfilCapacity(Integer overfulfilCapacity) {
         this.overfulfilCapacity = overfulfilCapacity;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

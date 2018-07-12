@@ -20,6 +20,9 @@ public class Manufacture {
     private String orderId;
 
     private String technologyId;
+
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
     
     public String getManufactureSn() {
         return manufactureSn;
@@ -68,5 +71,13 @@ public class Manufacture {
 	public void setTechnologyId(String technologyId) {
 		this.technologyId = technologyId;
 	}
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
     
 }

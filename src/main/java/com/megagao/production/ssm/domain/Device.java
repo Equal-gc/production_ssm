@@ -14,6 +14,9 @@ public class Device {
 	@Size(max=100, message="{name.length.error}")
     private String deviceName;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     private String deviceTypeId;
 
     private String deviceStatusId;
@@ -120,5 +123,13 @@ public class Device {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

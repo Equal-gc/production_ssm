@@ -20,6 +20,9 @@ public class DeviceCheck {
 
     private String deviceCheckFaultId;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     public String getDeviceCheckId() {
         return deviceCheckId;
     }
@@ -66,5 +69,13 @@ public class DeviceCheck {
 
     public void setDeviceCheckFaultId(String deviceCheckFaultId) {
         this.deviceCheckFaultId = deviceCheckFaultId == null ? null : deviceCheckFaultId.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

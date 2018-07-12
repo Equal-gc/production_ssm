@@ -24,6 +24,9 @@ public class MaterialReceive {
     @Size(max=5000, message="{note.length.error}")
     private String note;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     public String getReceiveId() {
         return receiveId;
     }
@@ -78,5 +81,13 @@ public class MaterialReceive {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

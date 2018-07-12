@@ -21,6 +21,9 @@ public class DeviceFault {
     @Size(max=500, message="维修方式长度请限制在500个字符内")
     private String deviceFaultMaintenance;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     public String getDeviceFaultId() {
         return deviceFaultId;
     }
@@ -67,5 +70,13 @@ public class DeviceFault {
 
     public void setDeviceFaultMaintenance(String deviceFaultMaintenance) {
         this.deviceFaultMaintenance = deviceFaultMaintenance == null ? null : deviceFaultMaintenance.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

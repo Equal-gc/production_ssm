@@ -31,6 +31,8 @@ public class COrderVO {
 
     private Product product;
 
+    private String companyId;
+
     public String getOrderId() {
         return orderId;
     }
@@ -126,4 +128,12 @@ public class COrderVO {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
 }

@@ -19,6 +19,8 @@ public class WorkVO {
 
     private Integer rating;
 
+    private String companyId;
+
     public String getWorkId() {
         return workId;
     }
@@ -66,4 +68,12 @@ public class WorkVO {
 	public void setDevice(Device device) {
 		this.device = device;
 	}
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
 }

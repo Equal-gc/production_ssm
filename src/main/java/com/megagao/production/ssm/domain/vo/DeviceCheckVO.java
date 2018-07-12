@@ -7,6 +7,8 @@ public class DeviceCheckVO extends DeviceCheck{
 	private String deviceName;
 	
 	private String deviceCheckEmp;
+
+	private String companyId;
 	
 	public String getDeviceName() {
 		return deviceName;
@@ -22,6 +24,14 @@ public class DeviceCheckVO extends DeviceCheck{
 
 	public void setDeviceCheckEmp(String deviceCheckEmp) {
 		this.deviceCheckEmp = deviceCheckEmp;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 
 }

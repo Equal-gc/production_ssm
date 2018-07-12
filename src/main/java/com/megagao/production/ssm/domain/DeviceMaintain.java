@@ -23,6 +23,9 @@ public class DeviceMaintain {
     @Max(value=999999999, message="维修费用的长度限制在10个字符之内")
     private BigDecimal deviceMaintainCost;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     private String note;
 
     public String getDeviceMaintainId() {
@@ -79,5 +82,13 @@ public class DeviceMaintain {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

@@ -15,6 +15,9 @@ public class TechnologyPlan {
 	@Max(value=999999999, message="批次数量不能超过999999999")
     private Integer batchAmount;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     private Date startPlan;
 
     private Date endPlan;
@@ -87,5 +90,13 @@ public class TechnologyPlan {
 
     public void setTechnologyPlanEnd(Date technologyPlanEnd) {
         this.technologyPlanEnd = technologyPlanEnd;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }

@@ -7,6 +7,8 @@ public class RoleVO {
 
     private String available;
 
+	private String companyId;
+
 	public String getRoleId() {
 		return roleId;
 	}
@@ -29,6 +31,14 @@ public class RoleVO {
 
 	public void setAvailable(String available) {
 		this.available = available;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 
 }

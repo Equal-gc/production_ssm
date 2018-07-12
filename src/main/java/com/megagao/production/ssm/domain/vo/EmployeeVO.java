@@ -31,6 +31,8 @@ public class EmployeeVO {
 
     private Department department;
 
+	private String companyId;
+
 	public String getEmpId() {
 		return empId;
 	}
@@ -133,6 +135,14 @@ public class EmployeeVO {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	
 }

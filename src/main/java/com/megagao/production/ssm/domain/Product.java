@@ -18,6 +18,9 @@ public class Product {
     @Size(max=5000, message="{note.length.error}")
     private String note;
 
+    @Size(max=40, message="{companyId.length.error}")
+    private String companyId;
+
     private Integer status;
 
     public String getProductId() {
@@ -66,5 +69,13 @@ public class Product {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 }
