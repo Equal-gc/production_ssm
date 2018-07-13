@@ -22,14 +22,14 @@ public class SysUser {
 	@Size(max=36, message="角色编号非法！")
     private String roleId;
 
-	private String companyId;
+	private String company_id;
 
 	public String getCompanyId() {
-		return companyId;
+		return company_id;
 	}
 
 	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
+		this.company_id = companyId;
 	}
 
 	public String getId() {

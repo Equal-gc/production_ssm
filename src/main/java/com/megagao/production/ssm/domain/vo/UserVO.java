@@ -22,7 +22,7 @@ public class UserVO {
 
     private String roleId;
 
-    private String companyId;
+    private String company_id;
 
     public String getId() {
         return id;
@@ -73,10 +73,10 @@ public class UserVO {
     }
 
     public String getCompanyId() {
-        return companyId;
+        return company_id;
     }
 
     public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+        this.company_id = companyId;
     }
 }
