@@ -53,12 +53,13 @@
 			product.product_id,
 			product_name
 		FROM
-        (SELECT * FROM c_order WHERE c_order.company_id="1")c_order
+       c_order
 		LEFT JOIN custom ON c_order.custom_id = custom.custom_id
 		LEFT JOIN product ON c_order.product_id = product.product_id
 		<if test="status!=null">
 			and status=#{status}
 		</if>
+        where c_order.company_id = #{companyId}
 		ORDER BY c_order.order_date
 	</select>
 	

@@ -9,6 +9,7 @@ import com.megagao.production.ssm.domain.customize.CustomResult;
 import com.megagao.production.ssm.domain.vo.COrderVO;
 import com.megagao.production.ssm.service.OrderService;
 import com.megagao.production.ssm.domain.customize.EUDataGridResult;
+import com.megagao.production.ssm.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,7 +25,7 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
-	
+
 	@RequestMapping("/get/{orderId}")
 	@ResponseBody
 	public COrderVO getItemById(@PathVariable String orderId) throws Exception{
@@ -39,11 +40,12 @@ public class OrderController {
 		return list;
 	}
 	
-	@RequestMapping("/find")
-	public String find() throws Exception{
-		return "order_list";                                                                                                                                                                                                                                                                                                 
+	@RequestMapping("/find/{companyId}")
+	public String find(@PathVariable String company_id) throws Exception{
+	SessionUtil.getSessionAttribute("company_id");
+		return "order_list";
 	}
-	
+
 	@RequestMapping("/add")
 	public String add() throws Exception{
 		return "order_add";
