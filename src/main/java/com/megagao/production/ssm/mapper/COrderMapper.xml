@@ -40,7 +40,7 @@
 
 	<!-- 扩展的sql -->
 	<!-- 查询所有记录 -->
-	<select id="find" parameterType="com.megagao.production.ssm.domain.COrder" resultMap="BaseResultMap">
+	<select id="find" parameterType="cOrder" resultMap="BaseResultMap">
 		SELECT
 		order_id,
 		order_date,
@@ -58,7 +58,7 @@
 		product_name,
 		c_order.company_id
 		FROM
- 		(SELECT * FROM c_order WHERE company_id="1")c_order
+ 		(SELECT * FROM c_order WHERE company_id=#{companyId})c_order
 		LEFT JOIN custom
 		ON c_order.custom_id = custom.custom_id
 		LEFT JOIN product ON c_order.product_id = product.product_id

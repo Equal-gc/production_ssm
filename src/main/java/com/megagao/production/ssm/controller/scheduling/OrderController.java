@@ -58,6 +58,7 @@ public class OrderController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public EUDataGridResult getList(Integer page, Integer rows, COrderVO cOrder) throws Exception{
+		cOrder.setCompanyId(SessionUtil.getSessionAttribute("company_id").toString());
 		EUDataGridResult result = orderService.getList(page, rows, cOrder);
 		return result;
 	}
