@@ -40,9 +40,8 @@ public class OrderController {
 		return list;
 	}
 	
-	@RequestMapping("/find/{companyId}")
-	public String find(@PathVariable String company_id) throws Exception{
-	SessionUtil.getSessionAttribute("company_id");
+	@RequestMapping("/find")
+	public String find() throws Exception{
 		return "order_list";
 	}
 
