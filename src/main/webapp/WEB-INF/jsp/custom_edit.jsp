@@ -12,12 +12,12 @@
 	            	<input class="easyui-textbox" type="text" name="customName" data-options="required:true"/>
 	            </td>
 	        </tr>
-	        <tr>
+	        <!--<tr>
 	            <td>客户全称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="fullName" style="width: 280px;"/>
 	            </td>
-	        </tr>
+	        </tr>-->
 	        <tr>
 	            <td>地址:</td>
 	            <td>

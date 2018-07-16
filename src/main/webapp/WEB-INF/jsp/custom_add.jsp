@@ -17,20 +17,20 @@
 	            	<input class="easyui-textbox" type="text" name="customName" data-options="required:true"/>
 	            </td>
 	        </tr>
-	        <tr>
+	        <!--<tr>
 	            <td>客户全称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="fullName" style="width: 280px;"/>
 	            </td>
-	        </tr>
+	        </tr>-->
 	        <tr>
-	            <td>地址:</td>
+	            <td>社区</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="address" style="width: 280px;"/>
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>传真:</td>
+	            <td>详细地址:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="fax"/>
 	            </td>
@@ -54,17 +54,19 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>客户状态:</td>
+	            <td>客户性质:</td>
 	            <td>
 		            <select class="easyui-combobox" name="status" panelHeight="auto" 
 		            	data-options="width:150, editable:false">
-						<option value="1">有效客户</option>
-						<option value="2">无效客户</option>
+						<option value="1">新客户</option>
+						<option value="2">老客户</option>
+						<option value="2">VIP客户</option>
+						<option value="2">准客户</option>
 					</select>
 				</td>
 	        </tr>
 	        <tr>
-	            <td>客户介绍:</td>
+	            <td>备注:</td>
 	            <td>
 	                <textarea style="width:800px;height:300px;visibility:hidden;" name="note"></textarea>
 	            </td>

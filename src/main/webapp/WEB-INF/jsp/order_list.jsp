@@ -11,16 +11,16 @@
 			<th data-options="field:'ck',checkbox:true"></th>
 			<th data-options="field:'orderId',align:'center',width:100">订单编号</th>
 			<th data-options="field:'custom',align:'center',width:100,formatter:formatCustom">订购客户</th>
-			<th data-options="field:'product',align:'center',width:100,formatter:formatProduct">订购产品</th>
-			<th data-options="field:'quantity',align:'center',width:100">订购数量</th>
-			<th data-options="field:'unitPrice',width:70,align:'center'">税前单价</th>
-			<th data-options="field:'unit',width:70,align:'center'">单位</th>
-			<th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatOrderStatus">状态</th>
+			<th data-options="field:'product',align:'center',width:100,formatter:formatProduct">订单详情</th>
+			<th data-options="field:'quantity',align:'center',width:100">商品数量</th>
+			<th data-options="field:'unitPrice',width:70,align:'center'">订单总价</th>
+			<th data-options="field:'unit',width:70,align:'center'">定金</th>
+			<th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatOrderStatus">订单状态</th>
 			<th data-options="field:'orderDate',width:130,align:'center',formatter:TAOTAO.formatDateTime">订购日期</th>
-			<th data-options="field:'requestDate',width:130,align:'center',formatter:TAOTAO.formatDateTime">要求日期</th>
-			<th data-options="field:'note',width:100,align:'center', formatter:formatOrderNote">订单要求</th>
-			<th data-options="field:'image',width:100,align:'center', formatter:formatImg">相关图片</th>
-			<th data-options="field:'file',width:180,align:'center', formatter:formatFile">订单附件</th>
+			<th data-options="field:'requestDate',width:130,align:'center',formatter:TAOTAO.formatDateTime">安装日期</th>
+			<th data-options="field:'note',width:100,align:'center', formatter:formatOrderNote">销售人员</th>
+			<th data-options="field:'image',width:100,align:'center', formatter:formatImg">订单照片</th>
+			<th data-options="field:'file',width:180,align:'center', formatter:formatFile">备注</th>
         </tr>
     </thead>
 </table> 

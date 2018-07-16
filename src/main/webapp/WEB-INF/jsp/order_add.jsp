@@ -26,7 +26,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>订购产品:</td>
+	            <td>订购详情:</td>
 	            <td>
 	            	<input id="product" class="easyui-combobox" name="productId"  panelHeight="auto"
     					data-options="valueField:'productId',textField:'productName',url:'product/get_data',
@@ -34,14 +34,14 @@
     			</td>  
 	        </tr>
 	        <tr>
-	            <td>订购数量:</td>
+	            <td>商品数量:</td>
 	            <td>
 					<input class="easyui-numberbox" type="text" name="quantity"
 						   data-options="min:1,max:99999999,precision:0"/>
 				</td>
 	        </tr>
 	        <tr>
-	            <td>税前单价:</td>
+	            <td>订单总价:</td>
 	            <td>
 					<input class="easyui-numberbox" type="text" name="unitPrice"
 						   data-options="min:1,max:99999999,precision:2" />
@@ -49,7 +49,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>单位:</td>
+	            <td>定金:</td>
 	            <td><input class="easyui-textbox" type="text" name="unit"/></td>
 	        </tr>
 	        <tr>
@@ -57,10 +57,11 @@
 	            <td>
 		            <select id="cc" class="easyui-combobox" name="status" panelHeight="auto"
 							data-options="required:true, width:150, editable:false">
-						<option value="1">未开始</option>
-						<option value="2">已开始</option>
-						<option value="3">已完成</option>
-						<option value="4">订单取消</option>
+						<option value="1">未付款未安装</option>
+						<option value="2">未付款已安装</option>
+						<option value="3">已付款未安装</option>
+						<option value="4">已付款已安装</option>
+						<!--<option value="5">订单取消</option>-->
 					</select>
 				</td>
 	        </tr>
@@ -72,14 +73,14 @@
 				</td>
 	        </tr>
 	        <tr>
-	            <td>要求日期:</td>
+	            <td>安装日期:</td>
 	            <td>
 					<input class="easyui-datetimebox" name="requestDate" data-options="required:true,showSeconds:true"
 						   value="date.format('yyyy-MM-dd hh:mm:ss')" style="width:150px">
 				</td>
 	        </tr>
 	        <tr>
-	            <td>合同扫描件:</td>
+	            <td>订单扫描:</td>
 	            <td>
 	            	 <a href="javascript:void(0)" class="easyui-linkbutton picFileUpload">上传图片</a>
 	                 <input type="hidden" id="image" name="image"/>
@@ -94,7 +95,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>订单要求:</td>
+	            <td>订单备注:</td>
 	            <td>
 	                <textarea style="width:800px;height:300px;visibility:hidden;" name="note"></textarea>
 	            </td>

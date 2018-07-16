@@ -10,14 +10,14 @@
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'customId',width:100,align:'center'">客户编号</th>
-            <th data-options="field:'customName',width:100,align:'center'">客户名称</th>
-            <th data-options="field:'fullName',width:200,align:'center'">客户全称</th>
-            <th data-options="field:'address',width:200,align:'center'">地址</th>
-            <th data-options="field:'fax',width:100,align:'center'">传真</th>
+            <th data-options="field:'customName',width:100,align:'center'">客户姓名</th>
+            <!--<th data-options="field:'fullName',width:200,align:'center'">联系电话</th>-->
+            <th data-options="field:'address',width:200,align:'center'">社区</th>
+            <th data-options="field:'fax',width:100,align:'center'">详细地址</th>
             <th data-options="field:'email',width:100,align:'center'">邮箱</th>
             <th data-options="field:'ownerName',width:60,align:'center'">经理姓名</th>
             <th data-options="field:'ownerTel',width:100,align:'center'">联系电话</th>
-            <th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatCustomStatus">客户状态</th>
+            <th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatCustomStatus">客户性质</th>
             <th data-options="field:'note',width:130,align:'center', formatter:formatCustomNote">备注</th>
         </tr>
     </thead>
