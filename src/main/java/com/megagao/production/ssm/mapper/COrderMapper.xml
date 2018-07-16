@@ -40,7 +40,7 @@
 
 	<!-- 扩展的sql -->
 	<!-- 查询所有记录 -->
-	<select id="find" parameterType="cOrder" resultMap="BaseResultMap">
+	<select id="find" parameterType="com.megagao.production.ssm.domain.COrder" resultMap="BaseResultMap">
 		SELECT
 		order_id,
 		order_date,
@@ -55,18 +55,16 @@
 		custom.custom_id,
 		custom_name,
 		product.product_id,
-		product_name
+		product_name,
+		c_order.company_id
 		FROM
-		c_order
-		<!-- (select * from c_order where company_id=#{companuId}) -->
+ 		(SELECT * FROM c_order WHERE company_id="1")c_order
 		LEFT JOIN custom
 		ON c_order.custom_id = custom.custom_id
-		LEFT JOIN
-		product ON
-		c_order.product_id = product.product_id
-		<if test="status!=null">
+		LEFT JOIN product ON c_order.product_id = product.product_id
+		 <if test="status!=null"> 
 			and status=#{status}
-		</if>
+		 </if> 
 		ORDER BY c_order.order_date
 	</select>
 
@@ -90,14 +88,17 @@
 		c_order.company_id
 		FROM
 		c_order
-		LEFT JOIN custom ON c_order.custom_id = custom.custom_id
+		LEFT JOIN custom ON c_order.custom_id =
+		custom.custom_id
 		LEFT
 		JOIN
-		product ON c_order.product_id = product.product_id
+		product ON c_order.product_id =
+		product.product_id
 		WHERE
 		order_id
 		like CONCAT('%',#{orderId},'%' )
-		ORDER BY c_order.order_date
+		ORDER
+		BY c_order.order_date
 	</select>
 
 	<select id="searchOrderByCustomName" parameterType="string"
@@ -116,16 +117,19 @@
 		custom.custom_id,
 		custom_name,
 		product.product_id,
-		product_name
+		product_name,
+		c_order.company_id
 		FROM
 		c_order
 		LEFT JOIN custom ON c_order.custom_id =
 		custom.custom_id
-		LEFT JOIN
+		LEFT
+		JOIN
 		product ON c_order.product_id =
 		product.product_id
 		WHERE
-		custom_name like CONCAT('%',#{customName},'%' )
+		custom_name
+		like CONCAT('%',#{customName},'%' )
 		ORDER BY c_order.order_date
 	</select>
 
@@ -145,7 +149,8 @@
 		custom.custom_id,
 		custom_name,
 		product.product_id,
-		product_name
+		product_name,
+		c_order.company_id
 		FROM
 		c_order
 		LEFT JOIN custom ON c_order.custom_id = custom.custom_id
@@ -261,7 +266,7 @@
 		order_id, custom_id, product_id, order_date, request_date,
 		note, quantity,
 		unit_price,
-		unit, image, file, status
+		unit, image, file, status, company_id
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.megagao.production.ssm.domain.COrderExample">
