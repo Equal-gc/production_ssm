@@ -75,6 +75,9 @@ public class OrderController {
 		if(orderService.get(cOrder.getOrderId()) != null){
 			result = new CustomResult(0, "该订单编号已经存在，请更换订单编号！", null);
 		}else{
+			cOrder.setCompanyId(SessionUtil.getSessionAttribute("company_id").toString());
+//			cOrder.setImage("1");
+//			cOrder.setCompanyId("1");
 			result = orderService.insert(cOrder);
 		}
 		return result;
