@@ -8,6 +8,7 @@ import com.megagao.production.ssm.mapper.CustomMapper;
 import com.megagao.production.ssm.service.CustomService;
 import com.megagao.production.ssm.domain.CustomExample;
 import com.megagao.production.ssm.domain.customize.EUDataGridResult;
+import com.megagao.production.ssm.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,11 @@ public class CustomServiceImpl implements CustomService {
 	public EUDataGridResult getList(int page, int rows, Custom custom) throws Exception{
 		//查询客户列表
 		CustomExample example = new CustomExample();
+		//由原来的0条件新增到1条件，created by zdq
+		CustomExample.Criteria criteria = example.createCriteria();
+		String cid=(String)SessionUtil.getSessionAttribute("company_id");
+		//System.out.println("4444444444444444444444444444444444"+cid);
+		criteria.andCompanyIdEqualTo(cid);
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<Custom> list = customMapper.selectByExample(example);
@@ -117,7 +123,8 @@ public class CustomServiceImpl implements CustomService {
 	public EUDataGridResult searchCustomByCustomName(int page, int rows, String customName) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<Custom> list =  customMapper.searchCustomByCustomName(customName);
+        String companyId=SessionUtil.getSessionAttribute("company_id").toString();
+		List<Custom> list =  customMapper.searchCustomByCustomName(customName,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);
@@ -131,7 +138,8 @@ public class CustomServiceImpl implements CustomService {
 	public EUDataGridResult searchCustomByCustomId(int page, int rows, String customId) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<Custom> list =  customMapper.searchCustomByCustomId(customId);
+		String companyId=SessionUtil.getSessionAttribute("company_id").toString();
+		List<Custom> list =  customMapper.searchCustomByCustomId2(customId,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);

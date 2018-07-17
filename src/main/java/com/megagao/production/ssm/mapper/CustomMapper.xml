@@ -12,6 +12,7 @@
     <result column="owner_tel" property="ownerTel" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
   </resultMap>
   
   <!-- 扩展的sql -->
@@ -46,26 +47,21 @@
 			custom_id = #{customId,jdbcType=VARCHAR}
 	</update>
 	
-	<select id="searchCustomByCustomId" parameterType="string" resultMap="BaseResultMap">
-		SELECT
-			*
-		FROM
-			custom
+	<select id="searchCustomByCustomId2" parameterType="string" resultMap="BaseResultMap">
+	select * from  (select * from custom where company_id = #{1})custom
 		WHERE
-			custom_id LIKE CONCAT(
+		custom_id LIKE CONCAT(
 				'%',
-				#{customId},'%' ) 
+				#{0},'%' )
 	</select>
 	
 	<select id="searchCustomByCustomName" parameterType="string" resultMap="BaseResultMap">
 		SELECT
-			*
-		FROM
-			custom
+			(select * from custom where company_id = #{1})custom
 		WHERE
 			custom_name LIKE CONCAT(
 				'%',
-				#{customName},'%' ) 
+				#{0},'%' )
 	</select>
 	
 	
@@ -129,7 +125,7 @@
   </sql>
   <sql id="Base_Column_List" >
     custom_id, custom_name, full_name, address, fax, email, owner_name, owner_tel, status, 
-    note
+    note,company_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.megagao.production.ssm.domain.CustomExample" >
     select
@@ -138,6 +134,20 @@
     </if>
     <include refid="Base_Column_List" />
     from custom
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample2" resultMap="BaseResultMap" parameterType="com.megagao.production.ssm.domain.CustomExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from (SELECT * FROM custom WHERE company_id=#{companyId})custom
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>

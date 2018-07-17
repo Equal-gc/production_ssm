@@ -119,6 +119,12 @@ public class CustomExample {
             return (Criteria) this;
         }
 
+        //created by zdq 查找时多加了一个公司id条件
+        public Criteria andCompanyIdEqualTo(String value) {
+            addCriterion("company_id =", value, "companyId");
+            return (Criteria) this;
+        }
+
         public Criteria andCustomIdNotEqualTo(String value) {
             addCriterion("custom_id <>", value, "customId");
             return (Criteria) this;
