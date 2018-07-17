@@ -175,11 +175,11 @@
     insert into custom (custom_id, custom_name, full_name, 
       address, fax, email, 
       owner_name, owner_tel, status, 
-      note)
+      note,company_id)
     values (#{customId,jdbcType=VARCHAR}, #{customName,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{ownerName,jdbcType=VARCHAR}, #{ownerTel,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{note,jdbcType=VARCHAR})
+      #{note,jdbcType=VARCHAR},	#{companyId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.megagao.production.ssm.domain.Custom" >
     insert into custom
