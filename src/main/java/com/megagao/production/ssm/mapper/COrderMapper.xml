@@ -307,7 +307,7 @@
 		order_date, request_date, note,
 		quantity,
 		unit_price, unit,
-		image, file, status
+		image, file, status,company_id
 		)
 		values
 		(#{orderId,jdbcType=VARCHAR}, #{customId,jdbcType=VARCHAR},
@@ -317,7 +317,8 @@
 		#{quantity,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL},
 		#{unit,jdbcType=VARCHAR},
 		#{image,jdbcType=VARCHAR},
-		#{file,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+		#{file,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{companyId,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.megagao.production.ssm.domain.COrder">
