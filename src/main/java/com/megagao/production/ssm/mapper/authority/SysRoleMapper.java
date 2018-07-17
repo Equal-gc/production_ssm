@@ -37,7 +37,8 @@ public interface SysRoleMapper {
 
     int updateByPrimaryKey(SysRole role);
 
-	List<RoleVO> searchRoleByRoleId(String roleId);
+    //搜索条件新增为两个，created by zdq
+	List<RoleVO> searchRoleByRoleId(String roleId,String companyId);
 
-	List<RoleVO> searchRoleByRoleName(String roleName);
+	List<RoleVO> searchRoleByRoleName(String roleName,String companyId);
 }
