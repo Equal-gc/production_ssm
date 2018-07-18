@@ -21,22 +21,30 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import com.megagao.production.ssm.util.*;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
 	@Autowired
     SysRoleMapper sysRoleMapper;
-	
+
 	@Autowired
 	SysUserRoleMapper sysUserRoleMapper;
-	
+
 	@Autowired
 	SysRolePermissionMapper sysRolePermissionMapper;
-	
+
 	@Override
 	public EUDataGridResult getList(int page, int rows, RoleVO sysRole) throws Exception{
 		//查询列表
 		SysRoleExample example = new SysRoleExample();
+		//由原来的0条件新增到1条件，created by zdq
+		SysRoleExample.Criteria criteria = example.createCriteria();
+		String cid=(String)SessionUtil.getSessionAttribute("company_id");
+		//System.out.println("4444444444444444444444444444444444"+cid);
+		criteria.andCompanyIdEqualTo(cid);
+
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<RoleVO> list = sysRoleMapper.selectByExample(example);
@@ -62,7 +70,7 @@ public class RoleServiceImpl implements RoleService {
 		return sysRoleList;
 	}
 
-	
+
 	@Override
 	public RoleVO get(String string) throws Exception{
 		return sysRoleMapper.selectByPrimaryKey(string);
@@ -78,7 +86,7 @@ public class RoleServiceImpl implements RoleService {
 		RoleVO sysRole = sysRoleMapper.selectByPrimaryKey(sysUserRole.getSysRoleId());
 		return sysRole;
 	}
-	
+
 	@Override
 	public CustomResult delete(String string) throws Exception{
 		int i = sysRoleMapper.deleteByPrimaryKey(string);
@@ -108,7 +116,8 @@ public class RoleServiceImpl implements RoleService {
 		sysRolePermission.setSysPermissionId(role.getPermission());
 		//存角色权限表
 		int k = sysRolePermissionMapper.insertSelective(sysRolePermission);
-		
+		//给role添加公司id,created by zdq
+		role.setCompanyId((String)SessionUtil.getSessionAttribute("company_id"));
 		int i = sysRoleMapper.insert(role);
 		if(i>0 && k>0){
 			return CustomResult.ok();
@@ -135,7 +144,7 @@ public class RoleServiceImpl implements RoleService {
 		sysRolePermission.setSysPermissionId(role.getPermission());
 		//修改角色权限表
 		int k = sysRolePermissionMapper.updateRolePermission(sysRolePermission);
-		
+
 		int i = sysRoleMapper.updateByPrimaryKey(role);
 		if(i>0 && k>0){
 			return CustomResult.ok();
@@ -158,7 +167,7 @@ public class RoleServiceImpl implements RoleService {
 		criteria.andRoleNameLike(sysRoleName);
 		return sysRoleMapper.selectByExample(example);
 	}
-	
+
 	@Override
 	public List<RoleVO> searchSysRoleBySysRoleId(String sysRoleId) throws Exception{
 		SysRoleExample example = new SysRoleExample();
@@ -173,7 +182,9 @@ public class RoleServiceImpl implements RoleService {
 			String roleId) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<RoleVO> list = sysRoleMapper.searchRoleByRoleId(roleId);
+		//此处将搜索条件增加至两个，created by zdq
+		String companyId=(String)SessionUtil.getSessionAttribute("company_id");
+		List<RoleVO> list = sysRoleMapper.searchRoleByRoleId(roleId,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);
@@ -189,7 +200,9 @@ public class RoleServiceImpl implements RoleService {
 			String roleName) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<RoleVO> list = sysRoleMapper.searchRoleByRoleName(roleName);
+		//此处将搜索条件增加至两个，created by zdq
+		String companyId=(String)SessionUtil.getSessionAttribute("company_id");
+		List<RoleVO> list = sysRoleMapper.searchRoleByRoleName(roleName,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);

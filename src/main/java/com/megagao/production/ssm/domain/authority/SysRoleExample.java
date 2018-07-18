@@ -188,6 +188,11 @@ public class SysRoleExample {
             addCriterion("role_name =", value, "roleName");
             return (Criteria) this;
         }
+        //created by zdq 查找时多加了一个公司id条件
+        public Criteria andCompanyIdEqualTo(String value) {
+            addCriterion("company_id =", value, "companyId");
+            return (Criteria) this;
+        }
 
         public Criteria andRoleNameNotEqualTo(String value) {
             addCriterion("role_name <>", value, "roleName");

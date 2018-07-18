@@ -39,7 +39,6 @@ public class COrder {
     @Size(max=40, message="{id.length.error}")
     private String productId;
 
-    @Size(max=40, message="{companyId.length.error}")
     private String companyId;
 
     public String getOrderId() {

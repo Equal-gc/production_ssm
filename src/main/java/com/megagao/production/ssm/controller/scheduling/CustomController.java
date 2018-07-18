@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.megagao.production.ssm.util.SessionUtil;
+
 
 @Controller
 @RequestMapping("/custom")
@@ -71,6 +73,7 @@ public class CustomController {
 		if(customService.get(custom.getCustomId()) != null){
 			result = new CustomResult(0, "该客户编号已经存在，请更换客户编号！", null);
 		}else{
+			custom.setCompanyId(SessionUtil.getSessionAttribute("company_id").toString());
 			result = customService.insert(custom);
 		}
 		return result;

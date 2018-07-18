@@ -15,9 +15,10 @@ public interface CustomMapper {
 	
 	int updateNote(Custom record);
 	
-	List<Custom> searchCustomByCustomName(String customName);
+	List<Custom> searchCustomByCustomName(String customName,String companyId);
 	
 	List<Custom> searchCustomByCustomId(String customId);
+    List<Custom> searchCustomByCustomId2(String customId,String companyId);
 	
 	//逆向工程生成的mapper接口
     int countByExample(CustomExample example);
@@ -31,6 +32,7 @@ public interface CustomMapper {
     int insertSelective(Custom record);
 
     List<Custom> selectByExample(CustomExample example);
+    List<Custom> selectByExample2(CustomExample example,String companyId);
 
     Custom selectByPrimaryKey(String customId);
 

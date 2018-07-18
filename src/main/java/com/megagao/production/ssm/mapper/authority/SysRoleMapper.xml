@@ -39,9 +39,9 @@
 		WHERE
 			role_id LIKE CONCAT(
 				'%',
-				#{roleId},'%' ) 
+				#{0},'%' ) and company_id=#{1}
 	</select>
-	
+
 	<select id="searchRoleByRoleName" parameterType="string" resultMap="BaseResultMap">
 		SELECT
 			*
@@ -50,9 +50,9 @@
 		WHERE
 			role_name LIKE CONCAT(
 				'%',
-				#{roleName},'%' ) 
+				#{0},'%' ) and company_id=#{1}
 	</select>
-	
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -129,7 +129,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from sys_role
     where role_id = #{roleId,jdbcType=VARCHAR}
@@ -145,9 +145,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="sysRole" >
-    insert into sys_role (role_id, role_name, available
+    insert into sys_role (role_id, role_name, available, company_id
       )
-    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}, #{companyId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="sysRole" >
