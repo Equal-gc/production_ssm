@@ -119,9 +119,11 @@
 			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
 				<li><span>仓库系统 </span>
 					<ul>
-						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
-						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
-				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">物料消耗</li>	 					
+						<li id=41 data-options="attributes:{'url':'material/find'}">仓库信息</li>
+						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">货品出库</li>
+				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">库存盘点</li>
+						<li id=44 data-options="attributes:{'url':'materialReceive/find'}">货物返仓</li>
+						<li id=45 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
 					</ul>
 				</li>
 			</ul>
@@ -132,11 +134,11 @@
 				data-options="animate:true,lines:true">
 				<li><span>售后管理</span>
 					<ul>
-						<li id=51 data-options="attributes:{'url':'unqualify/find'}">不合格品管理</li>
-						<li id=52 data-options="attributes:{'url':'measure/find'}">成品计量质检</li>
-						<li id=53 data-options="attributes:{'url':'f_count_check/find'}">成品计数质检</li>
-						<li id=54 data-options="attributes:{'url':'p_measure_check/find'}">工序计量质检</li>
-						<li id=55 data-options="attributes:{'url':'p_count_check/find'}">工序计数质检</li>
+						<li id=51 data-options="attributes:{'url':'unqualify/find'}">安装管理</li>
+						<li id=52 data-options="attributes:{'url':'measure/find'}">维修管理</li>
+						<li id=53 data-options="attributes:{'url':'f_count_check/find'}">客户维护</li>
+						<!--<li id=54 data-options="attributes:{'url':'p_measure_check/find'}">工序计量质检</li>
+						<li id=55 data-options="attributes:{'url':'p_count_check/find'}">工序计数质检</li>-->
 					</ul>
 				</li>
 			</ul>

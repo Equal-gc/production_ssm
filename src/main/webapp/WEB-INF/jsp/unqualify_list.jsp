@@ -4,32 +4,32 @@
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 
-<table id="unqualifyList" title="不合格品列表" class="easyui-datagrid"
+<table id="unqualifyList" title="安装管理列表" class="easyui-datagrid"
        data-options="singleSelect:false,collapsible:true,pagination:true,rownumbers:true,url:'unqualify/list',
        	method:'get',pageSize:10,fitColumns:true,toolbar:toolbar_unqualify">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'unqualifyApplyId',align:'center',width:100">
-				不合格品申请编号
+				订单编号
 			</th>
             <th data-options="field:'productId',align:'center',width:100,formatter:formatProduct">
-				产品名称
+				订单详情
 			</th>
             <th data-options="field:'unqualifyItem',align:'center',width:100">
-				不合格项目
+				客户信息
 			</th>
             <th data-options="field:'unqualifyCount',align:'center',width:100">
-				不合格数量
+				订单状态
 			</th>
             <th data-options="field:'assemblyDate',align:'center',width:100,formatter:TAOTAO.formatDateTime">
-				加工时间
+				预约时间
 			</th>
             <th data-options="field:'empName',align:'center',width:100,formatter:formatEmp_unqualify">
-				申请人
+				安装人员
 			</th>
             <th data-options="field:'applyDate',align:'center',width:100,formatter:TAOTAO.formatDateTime">
-				申请时间
+				完成时间
 			</th>
             <th data-options="field:'note',align:'center',width:100,formatter:formatUnqualifyNote">
 				备注

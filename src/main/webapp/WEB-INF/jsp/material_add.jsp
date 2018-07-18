@@ -5,27 +5,33 @@
 <div style="padding:10px 10px 10px 10px">
 	<form id="materialAddForm" class="materialForm" method="post">
 	    <table cellpadding="5" >
+			<tr>
+				<td>品牌:</td>
+				<td>
+					<input class="easyui-textbox" type="text" name="workId" style="width: 180px;"></input>
+				</td>
+			</tr>
 	         <tr>
-	            <td>物料编号:</td>
+	            <td>产品名称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="materialId" data-options="required:true"
 						   style="width: 160px;"/>
 	            </td>
 	        </tr>
-	     <!--   <tr>
-	            <td>所属工作号:</td>
+	     	<tr>
+	            <td>型号:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="workId" style="width: 280px;"></input>
+	            	<input class="easyui-textbox" type="text" name="workId" style="width: 180px;"></input>
 	            </td>
-	        </tr>-->
+	        </tr>
 	        <tr>
-	            <td>物料类型:</td>
+	            <td>类别:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="materialType" style="width: 160px;"/>
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>物料状态:</td>
+	            <!--<td>物料状态:</td>
 	            <td>
 		            <select id="cc" class="easyui-combobox" name="status" panelHeight="auto" style="width: 160px;"
 							data-options="editable:false">
@@ -33,7 +39,7 @@
 						<option value="正常">正常</option>
 						<option value="短缺">短缺</option>
 					</select>
-				</td>
+				</td>-->
 	        </tr>
 	        <tr>
 	            <td>剩余数量:</td>

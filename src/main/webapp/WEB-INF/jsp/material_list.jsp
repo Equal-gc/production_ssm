@@ -3,18 +3,23 @@
 <link href="js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
-<table class="easyui-datagrid" id="materialList" title="物料信息" data-options="singleSelect:false,collapsible:true,
+<table class="easyui-datagrid" id="materialList" title="库存信息" data-options="singleSelect:false,collapsible:true,
 	pagination:true,rownumbers:true,url:'material/list',method:'get',pageSize:10,fitColumns:true,
 	toolbar:toolbar_material">
-    <thead>
+    <thead cellpadding="5">
          <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-        	<th data-options="field:'materialId',align:'center',width:100">物料编号</th>
-            <th data-options="field:'materialType',align:'center',width:100">物料类型</th>
-            <th data-options="field:'status',width:100,align:'center',formatter:TAOTAO.formatMaterialStatus">
+        	<th data-options="field:'materialId',align:'center',width:100">品牌</th>
+        	<th data-options="field:'materialId',align:'center',width:100">产品名称</th>
+        	<th data-options="field:'materialId',align:'center',width:100">型号</th>
+            <th data-options="field:'materialType',align:'center',width:100">类别</th>
+            <!--<th data-options="field:'status',width:100,align:'center',formatter:TAOTAO.formatMaterialStatus">
 				物料状态
-			</th>
-            <th data-options="field:'remaining',align:'center',width:100">剩余数量</th>
+			</th>-->
+            <th data-options="field:'remaining',align:'center',width:100">数量</th>
+            <th data-options="field:'remaining',align:'center',width:100">入库时间</th>
+            <th data-options="field:'remaining',align:'center',width:100">出库时间</th>
+            <th data-options="field:'remaining',align:'center',width:100">操作人员</th>
             <th data-options="field:'note',width:100,align:'center', formatter:formatMaterialNote">备注</th>
           
         </tr>
@@ -26,7 +31,7 @@
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='material:add' }" >
 		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="material_add()">新增</a>  
+		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="material_add()">入库</a>
 		    </div>  
 		</c:if>
 		<c:if test="${per=='material:edit' }" >

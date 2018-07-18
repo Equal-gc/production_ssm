@@ -7,20 +7,20 @@
 		<input type="hidden" name="materialId"/>
 	    <table cellpadding="5">
 	        
-	       <!--   <tr>
-	            <td>所属工作号:</td>
+	        <tr>
+	            <td>品牌:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="workId" style="width: 280px;"></input>
 	            </td>
-	        </tr>-->
+	        </tr>
 	        <tr>
-	            <td>物料类型:</td>
+	            <td>产品名称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="materialType" style="width: 160px;"/>
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>物料状态:</td>
+	            <td>型号:</td>
 	            <td>
 		            <select id="cc" class="easyui-combobox" name="status" panelHeight="auto" style="width:160px;"
 							data-options="width:160, editable:false">
@@ -31,12 +31,18 @@
 				</td>
 	        </tr>
 	        <tr>
-	            <td>剩余数量:</td>
+	            <td>类型:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="remaining" style="width: 160px;"/>
 	            </td>
 	        </tr>
-	        
+	        <tr>
+	            <td>数量:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="remaining" style="width: 160px;"/>
+	            </td>
+	        </tr>
+
 	        <tr>
 	            <td>备注:</td>
 	            <td>
