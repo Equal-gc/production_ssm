@@ -1,5 +1,7 @@
 package com.megagao.production.ssm.controller.scheduling;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -8,6 +10,7 @@ import com.megagao.production.ssm.domain.Product;
 import com.megagao.production.ssm.domain.customize.CustomResult;
 import com.megagao.production.ssm.service.ProductService;
 import com.megagao.production.ssm.domain.customize.EUDataGridResult;
+import com.megagao.production.ssm.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -67,9 +70,15 @@ public class ProductController {
 			FieldError fieldError = bindingResult.getFieldError();
 			return CustomResult.build(100, fieldError.getDefaultMessage());
 		}
-		if(productService.get(product.getProductId()) != null){
-			result = new CustomResult(0, "该产品编号已经存在，请更换产品编号！", null);
+		System.out.println(product.getCompanyId()+product.getVersion());
+		if(productService.get(product.getProductName()) != null){
+			result = new CustomResult(0, "该产品已经存在，请更换产品名称！", null);
 		}else{
+			String companyId=SessionUtil.getSessionAttribute("company_id").toString();
+			product.setCompanyId(companyId);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyymmddhhmmss");
+			product.setProductId(sdf.format(new Date()));
+			System.out.println(sdf.format(new Date()));
 			result = productService.insert(product);
 		}
 		return result;

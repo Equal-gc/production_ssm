@@ -39,7 +39,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product get(String string) throws Exception{
 		
-		return productMapper.selectByPrimaryKey(string);
+		//return productMapper.selectByPrimaryKey(string);
+		return productMapper.selectByProductionName(string);
 	}
 
 	@Override

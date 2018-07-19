@@ -11,9 +11,9 @@
 	<form id="productAddForm" class="productForm" method="post">
 	    <table cellpadding="5" >
 	        <tr>
-	            <td>产品编号:</td>
+	            <td>品牌:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="productId" data-options="required:true"/>
+	            	<input class="easyui-textbox" type="text" name="brand" data-options="required:true"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -22,8 +22,14 @@
 	            	<input class="easyui-textbox" type="text" name="productName" data-options="required:true"/>
     			</td>  
 	        </tr>
+	           <tr>
+            	            <td>型号:</td>
+            	            <td>
+            	            	<input class="easyui-textbox" type="text" name="version" data-options="required:true"/>
+                			</td>
+            	        </tr>
 	        <tr>
-	            <td>产品种类:</td>
+	            <td>产品类别:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="productType" data-options="required:true"/>
     			</td>  

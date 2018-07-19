@@ -36,6 +36,8 @@ public interface ProductMapper {
 
     Product selectByPrimaryKey(String productId);
 
+    Product selectByProductionName(String productionName);
+
     int updateByExampleSelective(@Param("record") Product record, @Param("example") ProductExample example);
 
     int updateByExample(@Param("record") Product record, @Param("example") ProductExample example);

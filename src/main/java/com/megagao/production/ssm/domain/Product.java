@@ -4,7 +4,7 @@ import javax.validation.constraints.Size;
 
 public class Product {
 	
-	@Size(max=40, message="{id.length.error}")
+	//@Size(max=40, message="{id.length.error}")
     private String productId;
 
 	@Size(max=100, message="{name.length.error}")
@@ -18,8 +18,14 @@ public class Product {
     @Size(max=5000, message="{note.length.error}")
     private String note;
 
-    @Size(max=40, message="{companyId.length.error}")
+   // @Size(max=40, message="{companyId.length.error}")
     private String companyId;
+
+    //@Size(max=40, message="{version.length.error}")
+    private String version;
+
+    //@Size(max=40, message="{brand.length.error}")
+    private String brand;
 
     private Integer status;
 
@@ -77,5 +83,21 @@ public class Product {
 
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

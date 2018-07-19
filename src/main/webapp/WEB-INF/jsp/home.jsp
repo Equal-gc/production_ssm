@@ -75,6 +75,7 @@
 					<ul>
 						<li id=13 data-options="attributes:{'url':'product/find'}">产品管理</li>
 					</ul>
+					<!--
 					<ul>
 						<li id=14 data-options="attributes:{'url':'work/find'}">作业管理</li>
 					</ul>
@@ -84,6 +85,7 @@
 					<ul>
 						<li id=16 data-options="attributes:{'url':'task/find'}">生产派工管理</li>
 					</ul>
+					-->
 				</li>
 			</ul>
 		</div>

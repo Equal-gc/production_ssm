@@ -8,6 +8,8 @@
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="note" property="note" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="brand" property="brank" jdbcType="VARCHAR" />
   </resultMap>
   
   <!-- 扩展的sql -->
@@ -135,7 +137,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    product_id, product_name, product_type, image, note, status
+    product_id, product_name, product_type, image, note, status,brand,version
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.megagao.production.ssm.domain.ProductExample" >
     select
@@ -143,7 +145,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from product
+    from (select * from product where company_id = #{companyId})product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -157,6 +159,12 @@
     from product
     where product_id = #{productId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByProductionName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from product
+    where product_name = #{productName,jdbcType=VARCHAR} and company_id= #{companyId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from product
     where product_id = #{productId,jdbcType=VARCHAR}
@@ -169,10 +177,10 @@
   </delete>
   <insert id="insert" parameterType="com.megagao.production.ssm.domain.Product" >
     insert into product (product_id, product_name, product_type, 
-      image, note, status
+      image, note, status,version,brand
       )
     values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{version,jdbcType=VARCHAR},#{brand,jdbcType=VARCHAR},
       )
   </insert>
   <insert id="insertSelective" parameterType="com.megagao.production.ssm.domain.Product" >
