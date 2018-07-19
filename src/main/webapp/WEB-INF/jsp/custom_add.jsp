@@ -8,7 +8,7 @@
 	        <tr>
 	            <td>客户编号:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="customId" data-options="required:true"/>
+	            	<input class="easyui-textbox" type="text" name="customId" data-options="required:true" />
 	            </td>
 	        </tr>
 	        <tr>

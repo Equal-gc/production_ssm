@@ -1,5 +1,7 @@
 package com.megagao.production.ssm.controller.scheduling;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -73,7 +75,12 @@ public class CustomController {
 		if(customService.get(custom.getCustomId()) != null){
 			result = new CustomResult(0, "该客户编号已经存在，请更换客户编号！", null);
 		}else{
-			custom.setCompanyId(SessionUtil.getSessionAttribute("company_id").toString());
+			String companyId=SessionUtil.getSessionAttribute("company_id").toString();
+			custom.setCompanyId(companyId);
+			Date  date =new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+			String currentTime = sdf.format(date);
+			custom.setCustomId(companyId+currentTime);
 			result = customService.insert(custom);
 		}
 		return result;
