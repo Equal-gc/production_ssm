@@ -3,6 +3,8 @@ package com.megagao.production.ssm.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.megagao.production.ssm.domain.authority.SysRoleExample.Criteria;
+
 public class ProductExample {
     protected String orderByClause;
 
@@ -513,6 +515,11 @@ public class ProductExample {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
+    	public Criteria andCompanyIdEqualTo(String companyId) {
+			// TODO Auto-generated method stub
+			addCriterion("company_id =", companyId, "companyId");
+	        return (Criteria) this;
+		}
     }
 
     public static class Criteria extends GeneratedCriteria {

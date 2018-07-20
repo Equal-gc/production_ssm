@@ -9,7 +9,8 @@
     <result column="note" property="note" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="version" property="version" jdbcType="VARCHAR" />
-    <result column="brand" property="brank" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+        <result column="company_id" property="companyId" jdbcType="VARCHAR" />
   </resultMap>
   
   <!-- 扩展的sql -->
@@ -48,33 +49,51 @@
 		SELECT
 			*
 		FROM
-			product
+			(select * from product where company_id = #{1})product
 		WHERE
 			product_id LIKE CONCAT(
 				'%',
-				#{productId},'%' ) 
+				#{0},'%' ) 
 	</select>
-	
+	<select id="searchProductByBrand" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			(select * from product where company_id = #{1})product
+		WHERE
+			brand LIKE CONCAT(
+				'%',
+				#{0},'%' ) 
+	</select><select id="searchProductByVersion" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			(select * from product where company_id = #{1})product
+		WHERE
+			version LIKE CONCAT(
+				'%',
+				#{0},'%' ) 
+	</select>
 	<select id="searchProductByProductName" parameterType="string" resultMap="BaseResultMap">
 		SELECT
 			*
 		FROM
-			product
+			(select * from product where company_id = #{1})product
 		WHERE
 			product_name LIKE CONCAT(
 				'%',
-				#{productName},'%' ) 
+				#{0},'%' ) 
 	</select>
 	
 	<select id="searchProductByProductType" parameterType="string" resultMap="BaseResultMap">
 		SELECT
 			*
 		FROM
-			product
+			(select * from product where company_id = #{1})product
 		WHERE
 			product_type LIKE CONCAT(
 				'%',
-				#{productType},'%' ) 
+				#{0},'%' ) 
 	</select>
 	
 	
@@ -145,7 +164,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from (select * from product where company_id = #{companyId})product
+    from product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -153,11 +172,12 @@
       order by ${orderByClause}
     </if>
   </select>
+  <!-- select中添加companyId,避免不同公司的产品编号相同/mkBy gc -->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from product
-    where product_id = #{productId,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR} and company_id= #{companyId,jdbcType=VARCHAR}
   </select>
   <select id="selectByProductionName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
@@ -177,10 +197,10 @@
   </delete>
   <insert id="insert" parameterType="com.megagao.production.ssm.domain.Product" >
     insert into product (product_id, product_name, product_type, 
-      image, note, status,version,brand
+      image, note, status,version,brand,company_id
       )
     values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{version,jdbcType=VARCHAR},#{brand,jdbcType=VARCHAR},
+      #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{version,jdbcType=VARCHAR},#{brand,jdbcType=VARCHAR},#{companyId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.megagao.production.ssm.domain.Product" >
@@ -204,6 +224,15 @@
       <if test="status != null" >
         status,
       </if>
+           <if test="brand != null" >
+        brand,
+      </if>
+           <if test="version != null" >
+        version,
+      </if>
+           <if test="companyId != null" >
+        company_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="productId != null" >
@@ -223,6 +252,15 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+        <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+        <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+        <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -273,6 +311,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.megagao.production.ssm.domain.Product" >
     update product
     <set >
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+        <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
       <if test="productName != null" >
         product_name = #{productName,jdbcType=VARCHAR},
       </if>
@@ -289,7 +333,7 @@
         status = #{status,jdbcType=INTEGER},
       </if>
     </set>
-    where product_id = #{productId,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR} and company_id = #{companyId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.megagao.production.ssm.domain.Product" >
     update product
@@ -297,7 +341,9 @@
       product_type = #{productType,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
-    where product_id = #{productId,jdbcType=VARCHAR}
+      status = #{status,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR} and company_id = #{companyId,jdbcType=VARCHAR}
   </update>
 </mapper>

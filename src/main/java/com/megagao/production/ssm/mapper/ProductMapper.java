@@ -15,11 +15,15 @@ public interface ProductMapper {
 	
 	int updateNote(Product record);
 	
-	List<Product> searchProductByProductName(String productName);
+	List<Product> searchProductByProductName(String productName,String companyId);
 	
-	List<Product> searchProductByProductId(String productId);
+	List<Product> searchProductByVersion(String version,String companyId);
 	
-	List<Product> searchProductByProductType(String productType);
+	List<Product> searchProductByBrand(String brand,String companyId);
+
+	List<Product> searchProductByProductId(String productId,String companyId);
+	
+	List<Product> searchProductByProductType(String productType,String companyId);
 	
 	//逆向工程生成的mapper接口
     int countByExample(ProductExample example);

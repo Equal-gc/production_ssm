@@ -9,14 +9,17 @@
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-        	<th data-options="field:'productId',align:'center',width:150">
-				产品编号
+        	<th data-options="field:'brand',align:'center',width:150">
+				品牌
 			</th>
             <th data-options="field:'productName',align:'center',width:150">
-				产品名称
+				名称
+			</th>
+			 <th data-options="field:'version',align:'center',width:150">
+				型号
 			</th>
             <th data-options="field:'productType',align:'center',width:150">
-				产品种类
+				类别
 			</th>
             <th data-options="field:'status',width:100,align:'center',formatter:TAOTAO.formatProductStatus">
 				状态
@@ -71,9 +74,10 @@
             style="width:250px;vertical-align: middle;">
         </input>
         <div id="menu_product" style="width:120px"> 
-			<div data-options="name:'productId'">产品编号</div> 
+			<div data-options="name:'brand'">品牌</div> 
 			<div data-options="name:'productName'">产品名称</div>
-			<div data-options="name:'productType'">产品种类</div>
+			<div data-options="name:'productType'">产品类型</div>
+			<div data-options="name:'version'">产品型号</div>
 		</div>     
     </div>  
 
@@ -111,9 +115,10 @@ function doSearch_product(value,name){ //用户输入用户名,点击搜素,触�
 			fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
-				{field : 'productId', width : 150, title : '产品编号', align:'center'},
+				{field : 'brand', width : 150, title : '品牌', align:'center'},
 				{field : 'productName', width : 150, align : 'center', title : '产品名称'},
-				{field : 'productType', width : 150, align : 'center', title : '产品种类'},
+				{field : 'productType', width : 150, align : 'center', title : '产品类别'},
+						{field : 'version', width : 120, align : 'center', title : '产品型号'},
 				{field : 'status', width : 100, title : '状态', align:'center', formatter:TAOTAO.formatProductStatus},
 				{field : 'note', width : 150, title : '产品介绍', align:'center', formatter:formatProductNote},
 				{field : 'image', width : 150, title : '相关图片', align:'center',formatter:formatImg},
@@ -126,9 +131,10 @@ function doSearch_product(value,name){ //用户输入用户名,点击搜素,触�
 			loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
-				{field : 'productId', width : 150, title : '产品编号', align:'center'},
+				{field : 'brand', width : 150, title : '品牌', align:'center'},
 				{field : 'productName', width : 150, align : 'center', title : '产品名称'},
-				{field : 'productType', width : 150, align : 'center', title : '产品种类'},
+				{field : 'productType', width : 150, align : 'center', title : '产品类别'},
+						{field : 'version', width : 120, align : 'center', title : '产品型号'},
 				{field : 'status', width : 100, title : '状态', align:'center', formatter:TAOTAO.formatProductStatus},
 				{field : 'note', width : 150, title : '产品介绍', align:'center', formatter:formatProductNote},
 				{field : 'image', width : 150, title : '相关图片', align:'center',formatter:formatImg},

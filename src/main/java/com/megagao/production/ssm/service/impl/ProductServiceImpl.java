@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.megagao.production.ssm.domain.Product;
 import com.megagao.production.ssm.domain.ProductExample;
+import com.megagao.production.ssm.domain.authority.SysRoleExample;
 import com.megagao.production.ssm.domain.customize.CustomResult;
 import com.megagao.production.ssm.mapper.ProductMapper;
 import com.megagao.production.ssm.service.ProductService;
+import com.megagao.production.ssm.util.SessionUtil;
 import com.megagao.production.ssm.domain.customize.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,10 @@ public class ProductServiceImpl implements ProductService {
 	public EUDataGridResult getList(int page, int rows, Product product) throws Exception{
 		//查询产品列表
 		ProductExample example = new ProductExample();
+		//由原来的0条件新增到1条件，created by zdq
+		ProductExample.Criteria criteria = example.createCriteria();
+		String companyId=(String)SessionUtil.getSessionAttribute("company_id");
+		criteria.andCompanyIdEqualTo(companyId);
 		//分页处理
 		PageHelper.startPage(page, rows);
 		List<Product> list = productMapper.selectByExample(example);
@@ -85,6 +91,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public CustomResult updateAll(Product product) throws Exception{
+		System.out.println(product.getBrand());
 		int i = productMapper.updateByPrimaryKey(product);
 		if(i>0){
 			return CustomResult.ok();
@@ -111,10 +118,11 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public EUDataGridResult searchProductByProductName(int page, int rows,
-			String productName) throws Exception{
+			String productName,String companyId) throws Exception{
 		//分页处理
+	
 		PageHelper.startPage(page, rows);
-		List<Product> list = productMapper.searchProductByProductName(productName);
+		List<Product> list = productMapper.searchProductByProductName(productName,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);
@@ -126,10 +134,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public EUDataGridResult searchProductByProductId(int page, int rows,
-			String productId) throws Exception{
+			String productId,String companyId) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<Product> list = productMapper.searchProductByProductId(productId);
+		List<Product> list = productMapper.searchProductByProductId(productId,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);
@@ -141,10 +149,38 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public EUDataGridResult searchProductByProductType(int page, int rows,
-			String productType) throws Exception{
+			String productType,String companyId) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
-		List<Product> list = productMapper.searchProductByProductType(productType);
+		List<Product> list = productMapper.searchProductByProductType(productType,companyId);
+		//创建一个返回值对象
+		EUDataGridResult result = new EUDataGridResult();
+		result.setRows(list);
+		//取记录总条数
+		PageInfo<Product> pageInfo = new PageInfo<>(list);
+		result.setTotal(pageInfo.getTotal());
+		return result;
+	}
+	@Override
+	public EUDataGridResult searchProductByBrand(int page, int rows,
+			String brand,String companyId) throws Exception{
+		//分页处理
+		PageHelper.startPage(page, rows);
+		List<Product> list = productMapper.searchProductByBrand(brand,companyId);
+		//创建一个返回值对象
+		EUDataGridResult result = new EUDataGridResult();
+		result.setRows(list);
+		//取记录总条数
+		PageInfo<Product> pageInfo = new PageInfo<>(list);
+		result.setTotal(pageInfo.getTotal());
+		return result;
+	}
+	@Override
+	public EUDataGridResult searchProductByVersion(int page, int rows,
+			String version,String companyId) throws Exception{
+		//分页处理
+		PageHelper.startPage(page, rows);
+		List<Product> list = productMapper.searchProductByVersion(version,companyId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);

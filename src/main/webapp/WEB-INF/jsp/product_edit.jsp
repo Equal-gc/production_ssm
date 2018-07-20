@@ -11,13 +11,25 @@
 		<input type="hidden" name="productId"/>
 	    <table cellpadding="5">
 	        <tr>
-	            <td>产品名称:</td>
+	            <td>品牌:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="brand" data-options="required:true"></input>
+    			</td>  
+	        </tr>
+	            <tr>
+	            <td>名称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="productName" data-options="required:true"></input>
     			</td>  
 	        </tr>
+	            <tr>
+	            <td>型号:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="version" data-options="required:true"></input>
+    			</td>  
+	        </tr>
 	        <tr>
-	            <td>产品种类:</td>
+	            <td>类别:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="productType" data-options="required:true"></input>
     			</td>  

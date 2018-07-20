@@ -17,7 +17,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>产品名称:</td>
+	            <td>名称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="productName" data-options="required:true"/>
     			</td>  
@@ -29,7 +29,7 @@
                 			</td>
             	        </tr>
 	        <tr>
-	            <td>产品类别:</td>
+	            <td>	类别:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="productType" data-options="required:true"/>
     			</td>  

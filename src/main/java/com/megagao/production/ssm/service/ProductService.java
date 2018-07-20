@@ -30,11 +30,14 @@ public interface ProductService {
     CustomResult updateNote(Product product) throws Exception;
     
     EUDataGridResult searchProductByProductName(int page, int rows, 
-    		String productName) throws Exception;
+    		String productName,String companyId) throws Exception;
 
     EUDataGridResult searchProductByProductId(int page, int rows, 
-    		String productId) throws Exception;
-    
+    		String productId,String companyId) throws Exception;
+    EUDataGridResult searchProductByBrand(int page, int rows, 
+    		String productType,String companyId) throws Exception;
+    EUDataGridResult searchProductByVersion(int page, int rows, 
+    		String productType,String companyId) throws Exception;
     EUDataGridResult searchProductByProductType(int page, int rows, 
-    		String productType) throws Exception;
+    		String productType,String companyId) throws Exception;
 }
