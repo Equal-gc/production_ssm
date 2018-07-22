@@ -56,7 +56,7 @@
 	</select>
 	
 	<select id="searchCustomByCustomName" parameterType="string" resultMap="BaseResultMap">
-		SELECT
+		SELECT * from
 			(select * from custom where company_id = #{1})custom
 		WHERE
 			custom_name LIKE CONCAT(
@@ -163,7 +163,7 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from custom
-    where custom_id = #{customId,jdbcType=VARCHAR}
+    where custom_id = #{customId,jdbcType=VARCHAR} and company_id=#{companyId}
   </delete>
   <delete id="deleteByExample" parameterType="com.megagao.production.ssm.domain.CustomExample" >
     delete from custom

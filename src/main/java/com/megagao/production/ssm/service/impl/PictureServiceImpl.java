@@ -4,10 +4,14 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import com.megagao.production.ssm.service.PictureService;
 import com.megagao.production.ssm.util.FileUtil;
 import com.megagao.production.ssm.util.IDUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -32,8 +36,12 @@ public class PictureServiceImpl implements PictureService {
 					
 					newName = newName + oldName.substring(oldName.lastIndexOf("."));
 					
-					String filePath = "D:\\upload\\temp\\img\\";
-					
+				//	String filePath = "D:\\upload\\temp\\img\\";
+					  WebApplicationContext webApplicationContext = ContextLoader
+				                .getCurrentWebApplicationContext();
+				        ServletContext servletContext = webApplicationContext
+				                .getServletContext();
+					String filePath = servletContext.getRealPath("/pic/");  
 					//新文件
 					File file = new java.io.File(filePath+newName);
 						
@@ -60,10 +68,15 @@ public class PictureServiceImpl implements PictureService {
 
 	@Override
 	public boolean deleteFile(String picName) throws Exception{
+		WebApplicationContext webApplicationContext = ContextLoader
+                .getCurrentWebApplicationContext();
+        ServletContext servletContext = webApplicationContext
+                .getServletContext();
+	    String filePat = servletContext.getRealPath("/pic/");  
 		
 		picName = picName.substring(picName.lastIndexOf("/")+1);
 		
-		picName = "D:\\upload\\temp\\img\\"+picName;
+		picName = filePat+picName;
 		
 		FileUtil.deleteFile(picName);
 		

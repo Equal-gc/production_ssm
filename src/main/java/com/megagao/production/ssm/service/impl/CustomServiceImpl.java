@@ -49,7 +49,8 @@ public class CustomServiceImpl implements CustomService {
 
 	@Override
 	public CustomResult delete(String string) throws Exception{
-		int i = customMapper.deleteByPrimaryKey(string);
+		String companyId=SessionUtil.getSessionAttribute("company_id").toString();
+		int i = customMapper.deleteByPrimaryKey(string,companyId);
 		if(i>0){
 			return CustomResult.ok();
 		}else{

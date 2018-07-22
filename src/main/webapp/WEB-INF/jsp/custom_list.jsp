@@ -9,14 +9,14 @@
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-        	<th data-options="field:'customId',width:100,align:'center'">客户编号</th>
+        	<!-- <th data-options="field:'customId',width:100,align:'center'">客户编号</th> -->
             <th data-options="field:'customName',width:100,align:'center'">客户姓名</th>
-            <!--<th data-options="field:'fullName',width:200,align:'center'">联系电话</th>-->
-            <th data-options="field:'address',width:200,align:'center'">社区</th>
-            <th data-options="field:'fax',width:100,align:'center'">详细地址</th>
+                     <th data-options="field:'ownerTel',width:100,align:'center'">联系电话</th>
+           <!-- <th data-options="field:'address',width:200,align:'center'">社区</th> -->
+            <th data-options="field:'address',width:100,align:'center'">详细地址</th>
             <th data-options="field:'email',width:100,align:'center'">邮箱</th>
             <th data-options="field:'ownerName',width:60,align:'center'">经理姓名</th>
-            <th data-options="field:'ownerTel',width:100,align:'center'">联系电话</th>
+   
             <th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatCustomStatus">客户性质</th>
             <th data-options="field:'note',width:130,align:'center', formatter:formatCustomNote">备注</th>
         </tr>
@@ -56,7 +56,6 @@
             style="width:250px;vertical-align: middle;">
         </input>
         <div id="menu_custom" style="width:120px"> 
-			<div data-options="name:'customId'">客户编号</div> 
 			<div data-options="name:'customName'">客户名称</div>
 		</div>     
     </div>  
@@ -102,14 +101,12 @@ function doSearch_custom(value,name){ //用户输入用户名,点击搜素,触�
 	        	fitColumns:true,//允许表格自动缩放,以适应父容器  
 	        columns : [ [ 
 	             	{field : 'ck', checkbox:true }, 
-	             	{field : 'customId', width : 100, title : '客户编号', align:'center'},
 	             	{field : 'customName', width : 100, align : 'center', title : '客户名称'},
-	             	{field : 'fullName', width : 200, align : 'center', title : '客户全称'}, 
+	                {field : 'ownerTel', width : 100, title : '联系电话', align:'center'}, 
 	             	{field : 'address', width : 200, title : '地址', align:'center'}, 
 	             	{field : 'fax', width : 100, title : '传真', align:'center'}, 
 	            	{field : 'email', width : 70, title : '邮箱', align:'center'}, 
 	             	{field : 'ownerName', width : 60, title : '经理姓名', align:'center'}, 
-	             	{field : 'ownerTel', width : 100, title : '联系电话', align:'center'}, 
 	             	{field : 'status', width : 60, title : '客户状态', align:'center', 
 	             			formatter:TAOTAO.formatCustomStatus}, 
 	             	{field : 'note', width : 100, title : '备注', align:'center', formatter:formatCustomNote}, 
@@ -123,16 +120,14 @@ function doSearch_custom(value,name){ //用户输入用户名,点击搜素,触�
 	        	loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器  
 	        columns : [ [ 
 					{field : 'ck', checkbox:true }, 
-					{field : 'customId', width : 100, title : '客户编号', align:'center'},
-					{field : 'customName', width : 100, align : 'center', title : '客户名称'},
-					{field : 'fullName', width : 200, align : 'center', title : '客户全称'}, 
-					{field : 'address', width : 200, title : '地址', align:'center'}, 
-					{field : 'fax', width : 100, title : '传真', align:'center'}, 
-					{field : 'email', width : 70, title : '邮箱', align:'center'}, 
-					{field : 'ownerName', width : 60, title : '经理姓名', align:'center'}, 
-					{field : 'ownerTel', width : 100, title : '联系电话', align:'center'}, 
-					{field : 'status', width : 60, title : '客户状态', align:'center', 
-							formatter:TAOTAO.formatCustomStatus}, 
+	             	{field : 'customName', width : 100, align : 'center', title : '客户名称'},
+	                {field : 'ownerTel', width : 100, title : '联系电话', align:'center'}, 
+	             	{field : 'address', width : 200, title : '地址', align:'center'}, 
+	             	{field : 'fax', width : 100, title : '传真', align:'center'}, 
+	            	{field : 'email', width : 70, title : '邮箱', align:'center'}, 
+	             	{field : 'ownerName', width : 60, title : '经理姓名', align:'center'}, 
+	             	{field : 'status', width : 60, title : '客户状态', align:'center', 
+	             			formatter:TAOTAO.formatCustomStatus}, 
 					{field : 'note', width : 100, title : '备注', align:'center', formatter:formatCustomNote}, 
 	        ] ],  
 	    });

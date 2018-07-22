@@ -12,10 +12,22 @@
 	            	<input class="easyui-textbox" type="text" name="customName" data-options="required:true"/>
 	            </td>
 	        </tr>
+	         <tr>
+	            <td>联系电话:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="ownerTel"/>
+	            </td>
+	        </tr>
 	        <!--<tr>
 	            <td>客户全称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="fullName" style="width: 280px;"/>
+	            </td>
+	        </tr>
+	             <tr>
+	            <td>传真:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="fax"/>
 	            </td>
 	        </tr>-->
 	        <tr>
@@ -24,12 +36,7 @@
 	            	<input class="easyui-textbox" type="text" name="address" style="width: 280px;"/>
 	            </td>
 	        </tr>
-	        <tr>
-	            <td>传真:</td>
-	            <td>
-	            	<input class="easyui-textbox" type="text" name="fax"/>
-	            </td>
-	        </tr>
+	   
 	        <tr>
 	            <td>邮箱:</td>
 	            <td>
@@ -42,12 +49,7 @@
 	            	<input class="easyui-textbox" type="text" name="ownerName"/>
 	            </td>
 	        </tr>
-	        <tr>
-	            <td>联系电话:</td>
-	            <td>
-	            	<input class="easyui-textbox" type="text" name="ownerTel"/>
-	            </td>
-	        </tr>
+	       
 	        <tr>
 	            <td>客户状态:</td>
 	            <td>

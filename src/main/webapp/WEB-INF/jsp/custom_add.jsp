@@ -6,15 +6,15 @@
 	<form id="customAddForm" class="customForm" method="post">
 	    <table cellpadding="5" >
 	        <tr>
-	            <td>客户编号:</td>
-	            <td>
-	            	<input class="easyui-textbox" type="text" name="customId" data-options="required:true" />
-	            </td>
-	        </tr>
-	        <tr>
 	            <td>客户名称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="customName" data-options="required:true"/>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>联系电话:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="ownerTel"/>
 	            </td>
 	        </tr>
 	        <!--<tr>
@@ -22,17 +22,17 @@
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="fullName" style="width: 280px;"/>
 	            </td>
-	        </tr>-->
+	        </tr>
 	        <tr>
 	            <td>社区</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="address" style="width: 280px;"/>
 	            </td>
-	        </tr>
+	        </tr>-->
 	        <tr>
 	            <td>详细地址:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="fax"/>
+	            	<input class="easyui-textbox" type="text" name="address"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -47,21 +47,14 @@
 	            	<input class="easyui-textbox" type="text" name="ownerName"/>
 	            </td>
 	        </tr>
-	        <tr>
-	            <td>联系电话:</td>
-	            <td>
-	            	<input class="easyui-textbox" type="text" name="ownerTel"/>
-	            </td>
-	        </tr>
+	        
 	        <tr>
 	            <td>客户性质:</td>
 	            <td>
 		            <select class="easyui-combobox" name="status" panelHeight="auto" 
 		            	data-options="width:150, editable:false">
-						<option value="1">新客户</option>
-						<option value="2">老客户</option>
-						<option value="2">VIP客户</option>
-						<option value="2">准客户</option>
+						<option value="1">有效客户</option>
+						<option value="2">无效客户</option>
 					</select>
 				</td>
 	        </tr>
