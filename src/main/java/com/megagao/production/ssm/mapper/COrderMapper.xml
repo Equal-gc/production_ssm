@@ -87,7 +87,7 @@
 		product_name,
 		c_order.company_id
 		FROM
-		c_order
+		(SELECT * FROM c_order WHERE company_id="1")c_order
 		LEFT JOIN custom ON c_order.custom_id =
 		custom.custom_id
 		LEFT
@@ -120,7 +120,7 @@
 		product_name,
 		c_order.company_id
 		FROM
-		c_order
+		(SELECT * FROM c_order WHERE company_id="1")c_order
 		LEFT JOIN custom ON c_order.custom_id =
 		custom.custom_id
 		LEFT
@@ -152,7 +152,7 @@
 		product_name,
 		c_order.company_id
 		FROM
-		c_order
+		(SELECT * FROM c_order WHERE company_id="1")c_order
 		LEFT JOIN custom ON c_order.custom_id = custom.custom_id
 		LEFT
 		JOIN
