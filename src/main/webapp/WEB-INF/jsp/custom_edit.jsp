@@ -40,7 +40,7 @@
 	        <tr>
 	            <td>邮箱:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="email"/>
+	            	<input class="easyui-textbox" type="text" name="email"/>  
 	            </td>
 	        </tr>
 	        <tr>
