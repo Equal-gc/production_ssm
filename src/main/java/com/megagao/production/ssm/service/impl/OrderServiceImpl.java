@@ -10,6 +10,7 @@ import com.megagao.production.ssm.mapper.COrderMapper;
 import com.megagao.production.ssm.service.CustomService;
 import com.megagao.production.ssm.service.OrderService;
 import com.megagao.production.ssm.service.ProductService;
+import com.megagao.production.ssm.util.SessionUtil;
 import com.megagao.production.ssm.domain.customize.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -129,6 +130,8 @@ public class OrderServiceImpl implements OrderService {
 	public EUDataGridResult searchOrderByOrderId(int page, int rows, String orderId) throws Exception{
 		//分页处理
 		PageHelper.startPage(page, rows);
+		COrderVO cOrder = new COrderVO();
+//		cOrder.setCompanyId(SessionUtil.getSessionAttribute("company_id").toString());
 		List<COrderVO> list = cOrderMapper.searchOrderByOrderId(orderId);
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();

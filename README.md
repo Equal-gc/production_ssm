@@ -1,12 +1,3 @@
-# 欢迎报bug或pull request ~
-
-若图片不能正常显示，请点击博客地址：[制造装备物联及生产管理系统](http://www.realfond.cn/2016/12/27/%E7%94%9F%E4%BA%A7%E7%AE%A1%E7%90%86ERP%E7%B3%BB%E7%BB%9F/)
-
-# production_ssm
-
-这是一个生产管理ERP系统。依托科技计划重点项目“制造装备物联及生产管理系统研发”，主要包括：计划进度、设备管理、工艺监控、物料监控、人员监控、质量监控、系统管理7大模块。
-
-
 ## 项目技术架构(Spring+SpringMVC+Mybatis） ##
 - Maven
 - Spring（IOC DI AOP 声明式事务处理）
@@ -27,21 +18,6 @@
 ## 数据库设计（详见sql文件） ##
 
 ![数据库设计](http://coding.net/u/megagao/p/ziyuan/git/raw/master/pm_image/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E8%25AE%25BE%25E8%25AE%25A1.png)
-
-## 软件运行截图 ##
-
-- **登录界面**
-
-登录可使用账号：22，密码：22的超级管理员登录，若密码输错，下次登录需输入验证码。
-
-![登录界面](http://coding.net/u/megagao/p/ziyuan/git/raw/master/pm_image/%25E7%2599%25BB%25E5%25BD%2595%25E7%2595%258C%25E9%259D%25A2.png)
-
-- **运行界面**
-
-超级管理员可显示系统管理模块进行系统权限分配与管理，其他角色可查看除系统管理外的剩余模块的信息（包括下载附件、查看图片等），但是只能维护该角色对应权限内的信息。  
-左边功能搜索栏可进行功能模糊查找。
-
-![运行界面](http://coding.net/u/megagao/p/ziyuan/git/raw/master/pm_image/%25E8%25BF%2590%25E8%25A1%258C%25E7%2595%258C%25E9%259D%25A2.png)
 
 - **图片上传**
 
@@ -158,7 +134,7 @@ KindEditor主要特点
 	    }
 	});
 
-关于这部分的详细内容请参考我的一篇博客：[利用filter和全局ajax事件实现shiro session过期登录跳转](http://www.realfond.cn/2017/05/29/%E5%88%A9%E7%94%A8filter%E5%92%8C%E5%85%A8%E5%B1%80ajax%E4%BA%8B%E4%BB%B6%E5%AE%9E%E7%8E%B0shiro%20session%E8%BF%87%E6%9C%9F%E7%99%BB%E5%BD%95%E8%B7%B3%E8%BD%AC/)
+关于这部分的详细内容请参考一篇博客：[利用filter和全局ajax事件实现shiro session过期登录跳转](http://www.realfond.cn/2017/05/29/%E5%88%A9%E7%94%A8filter%E5%92%8C%E5%85%A8%E5%B1%80ajax%E4%BA%8B%E4%BB%B6%E5%AE%9E%E7%8E%B0shiro%20session%E8%BF%87%E6%9C%9F%E7%99%BB%E5%BD%95%E8%B7%B3%E8%BD%AC/)
 
 ![https://coding.net/u/megagao/p/ziyuan/git/raw/master/pm_image/session%25E8%25BF%2587%25E6%259C%259F%25E8%25B7%25B3%25E8%25BD%25AC%25E7%2599%25BB%25E5%25BD%2595.png](https://coding.net/u/megagao/p/ziyuan/git/raw/master/pm_image/session%25E8%25BF%2587%25E6%259C%259F%25E8%25B7%25B3%25E8%25BD%25AC%25E7%2599%25BB%25E5%25BD%2595.png)
 

@@ -1,15 +1,10 @@
 package com.megagao.production.ssm.controller.scheduling;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import com.megagao.production.ssm.domain.COrder;
-import com.megagao.production.ssm.domain.customize.CustomResult;
-import com.megagao.production.ssm.domain.vo.COrderVO;
-import com.megagao.production.ssm.service.OrderService;
-import com.megagao.production.ssm.domain.customize.EUDataGridResult;
-import com.megagao.production.ssm.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,6 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.megagao.production.ssm.domain.COrder;
+import com.megagao.production.ssm.domain.customize.CustomResult;
+import com.megagao.production.ssm.domain.customize.EUDataGridResult;
+import com.megagao.production.ssm.domain.vo.COrderVO;
+import com.megagao.production.ssm.service.OrderService;
+import com.megagao.production.ssm.util.SessionUtil;
 
 @Controller
 @RequestMapping("/order")
@@ -76,6 +78,7 @@ public class OrderController {
 			result = new CustomResult(0, "该订单编号已经存在，请更换订单编号！", null);
 		}else{
 			cOrder.setCompanyId(SessionUtil.getSessionAttribute("company_id").toString());
+			cOrder.setOrderId(cOrder.getOrderId()+new Date().getTime());
 //			cOrder.setImage("1");
 //			cOrder.setCompanyId("1");
 			result = orderService.insert(cOrder);
