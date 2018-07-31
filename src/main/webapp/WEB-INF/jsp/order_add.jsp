@@ -27,11 +27,16 @@
 	        </tr>
 	        <tr>
 	            <td>订购详情:</td>
-	            <td>
+	            <!-- <td>
 	            	<input id="product" class="easyui-combobox" name="productId"  panelHeight="auto"
     					data-options="valueField:'productId',textField:'productName',url:'product/get_data',
     					editable:false, required:true" />
-    			</td>  
+    			</td>  --> 
+    			<td>
+	            	<input id="product" class="easyui-combobox" name="productId"  panelHeight="auto"
+    					data-options="valueField:'productId',textField:'productName',url:'product/get_data',
+    					multiple:true,editable:false, required:true" />
+    			</td>
 	        </tr>
 	        <tr>
 	            <td>商品数量:</td>
