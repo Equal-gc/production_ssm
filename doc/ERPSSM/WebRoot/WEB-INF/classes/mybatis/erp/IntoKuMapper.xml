@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IntoKuMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		ERP_INTOKU
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		GOODS_ID,	
+		INCOUNT,	
+		PRICE,	
+		ZPRICE,	
+		INTIME,	
+		BZ,	
+		USERNAME,	
+		INTOKU_ID,
+		GOODS_NAME
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{GOODS_ID},	
+		#{INCOUNT},	
+		#{PRICE},	
+		#{ZPRICE},	
+		#{INTIME},	
+		#{BZ},	
+		#{USERNAME},	
+		#{INTOKU_ID},
+		#{GOODS_NAME}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			INTOKU_ID = #{INTOKU_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			GOODS_ID = #{GOODS_ID},
+			INCOUNT = #{INCOUNT},
+			PRICE = #{PRICE},
+			ZPRICE = #{ZPRICE},
+			BZ = #{BZ},
+		INTOKU_ID = INTOKU_ID
+		where 
+		INTOKU_ID = #{INTOKU_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			INTOKU_ID = #{INTOKU_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+			a.GOODS_ID,
+			a.GOODS_NAME,
+			a.INCOUNT,	
+			a.PRICE,	
+			a.ZPRICE,	
+			a.INTIME,	
+			a.USERNAME,	
+			a.INTOKU_ID,
+			a.BZ,
+			b.TITLE
+		from 
+		<include refid="tableName"></include> a
+		left join cp_goods b
+		on a.GOODS_ID = b.GOODS_ID
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					b.TITLE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.lastStart!=null and pd.lastStart!=''"><!-- 开始时间检索 -->
+			and a.INTIME &gt;= #{pd.lastStart} 
+		</if>
+		<if test="pd.lastEnd!=null and pd.lastEnd!=''"><!-- 结束时间检索 -->
+			and a.INTIME &lt;= #{pd.lastEnd} 
+		</if>
+		and
+			a.USERNAME = #{pd.USERNAME}
+		order by a.INTIME desc
+	</select>
+	
+	<!-- 总金额 -->
+	<select id="priceSum" parameterType="pd" resultType="pd">
+		select
+			sum(ZPRICE) ZPRICE
+		from 
+		<include refid="tableName"></include> a
+		left join cp_goods b
+		on a.GOODS_ID = b.GOODS_ID
+		where 1=1
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					b.TITLE LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+				)
+		</if>
+		<if test="lastStart!=null and lastStart!=''"><!-- 开始时间检索 -->
+			and a.INTIME &gt;= #{lastStart} 
+		</if>
+		<if test="lastEnd!=null and lastEnd!=''"><!-- 结束时间检索 -->
+			and a.INTIME &lt;= #{lastEnd} 
+		</if>
+		and
+			a.USERNAME = #{USERNAME}
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			USERNAME = #{USERNAME}
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			INTOKU_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- fh313596790qq(青苔) -->
+</mapper>

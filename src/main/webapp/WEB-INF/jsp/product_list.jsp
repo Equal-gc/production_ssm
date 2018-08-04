@@ -21,6 +21,12 @@
             <th data-options="field:'productType',align:'center',width:150">
 				类别
 			</th>
+			    <th data-options="field:'cost',align:'center',width:150">
+				成本
+			</th>
+			    <th data-options="field:'price',align:'center',width:150">
+				售价
+			</th>
             <th data-options="field:'status',width:100,align:'center',formatter:TAOTAO.formatProductStatus">
 				状态
 			</th>
@@ -29,6 +35,20 @@
 			</th>
             <th data-options="field:'image',width:150,align:'center', formatter:formatImg">
 				相关图片
+			</th>
+				</th>
+				</th>
+			    <th data-options="field:'repertory',align:'center',width:150">
+				系统库存
+			</th>
+			</th>
+			    <th data-options="field:'stocktaking',align:'center',width:150">
+				盘点库存
+			</th>
+			</th>
+			    <th data-options="field:'profit',align:'center',width:150,formatter: function (value, row, index) {
+                           return row.repertory - row.stocktaking ;}">
+				盘盈盘亏
 			</th>
         </tr>
     </thead>
@@ -119,9 +139,15 @@ function doSearch_product(value,name){ //用户输入用户名,点击搜素,触�
 				{field : 'productName', width : 150, align : 'center', title : '产品名称'},
 				{field : 'productType', width : 150, align : 'center', title : '产品类别'},
 						{field : 'version', width : 120, align : 'center', title : '产品型号'},
+							{field : 'cost', width : 150, align : 'center', title : '成本'},
+						{field : 'price', width : 120, align : 'center', title : '售价'},
 				{field : 'status', width : 100, title : '状态', align:'center', formatter:TAOTAO.formatProductStatus},
 				{field : 'note', width : 150, title : '产品介绍', align:'center', formatter:formatProductNote},
-				{field : 'image', width : 150, title : '相关图片', align:'center',formatter:formatImg},
+				{field : 'image', width : 150, title : '相关图片', align:'center',formatter:formatImg},{field : 'repertory', width : 120, align : 'center', title : '系统库存'},
+						{field : 'stocktaking', width : 120, align : 'center', title : '盘点库存'},
+						{field : 'profit', width : 120, align : 'center', title : '盘盈盘亏',formatter: function (value, row, index) {
+                           return row.repertory - row.stocktaking ;
+                       }},
 	        ] ],  
 	    });
 	}else{
@@ -135,9 +161,16 @@ function doSearch_product(value,name){ //用户输入用户名,点击搜素,触�
 				{field : 'productName', width : 150, align : 'center', title : '产品名称'},
 				{field : 'productType', width : 150, align : 'center', title : '产品类别'},
 						{field : 'version', width : 120, align : 'center', title : '产品型号'},
+								{field : 'cost', width : 150, align : 'center', title : '成本'},
+						{field : 'price', width : 120, align : 'center', title : '售价'},
 				{field : 'status', width : 100, title : '状态', align:'center', formatter:TAOTAO.formatProductStatus},
 				{field : 'note', width : 150, title : '产品介绍', align:'center', formatter:formatProductNote},
 				{field : 'image', width : 150, title : '相关图片', align:'center',formatter:formatImg},
+				{field : 'repertory', width : 120, align : 'center', title : '系统库存'},
+						{field : 'stocktaking', width : 120, align : 'center', title : '盘点库存'},
+						{field : 'profit', width : 120, align : 'center', title : '盘盈盘亏',formatter: function (value, row, index) {
+                           return row.repertory - row.stocktaking ;
+                       }},
 	        ] ],  
 	    });
 	}

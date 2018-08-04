@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OutKuMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		ERP_OUTKU
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		GOODS_ID,	
+		INCOUNT,	
+		PRICE,	
+		ZPRICE,	
+		OUTTIME,	
+		GOODS_NAME,	
+		USERNAME,
+		BZ,
+		ORDER_NUMBER,
+		CUSTOMER_ID,
+		CUSTOMER_NAME,
+		OUTKU_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{GOODS_ID},	
+		#{INCOUNT},	
+		#{PRICE},	
+		#{ZPRICE},	
+		#{OUTTIME},	
+		#{GOODS_NAME},	
+		#{USERNAME},
+		#{BZ},
+		#{ORDER_NUMBER},
+		#{CUSTOMER_ID},
+		#{CUSTOMER_NAME},
+		#{OUTKU_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			OUTKU_ID = #{OUTKU_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+		OUTKU_ID = OUTKU_ID
+		where 
+		OUTKU_ID = #{OUTKU_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			OUTKU_ID = #{OUTKU_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				 GOODS_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				 or
+				 CUSTOMER_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				 or
+				 ORDER_NUMBER LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				 or
+				 BZ LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.lastStart!=null and pd.lastStart!=''"><!-- 开始时间检索 -->
+			and OUTTIME &gt;= #{pd.lastStart} 
+		</if>
+		<if test="pd.lastEnd!=null and pd.lastEnd!=''"><!-- 结束时间检索 -->
+			and OUTTIME &lt;= #{pd.lastEnd} 
+		</if>
+		<if test="pd.CUSTOMER_ID!=null and pd.CUSTOMER_ID!=''"><!-- 客户ID检索条件(针对客户查询) -->
+			and CUSTOMER_ID = #{pd.CUSTOMER_ID} 
+		</if>
+		and
+			USERNAME = #{pd.USERNAME}
+		order by OUTTIME desc
+	</select>
+	
+	<!-- 总金额 -->
+	<select id="priceSum" parameterType="pd" resultType="pd">
+		select
+			sum(ZPRICE) ZPRICE
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+				 GOODS_NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+				)
+		</if>
+		<if test="lastStart!=null and lastStart!=''"><!-- 开始时间检索 -->
+			and OUTTIME &gt;= #{lastStart} 
+		</if>
+		<if test="lastEnd!=null and lastEnd!=''"><!-- 结束时间检索 -->
+			and OUTTIME &lt;= #{lastEnd} 
+		</if>
+		<if test="onemonth!=null and onemonth!=''"><!-- 某一月检索 -->
+			and OUTTIME like CONCAT(#{onemonth},'%')
+		</if>
+		<if test="days!=null and days!=''"><!-- 几天内 -->
+			and DATE_SUB(CURDATE(), INTERVAL ${days} DAY) &lt;= date(OUTTIME)
+		</if>
+		and
+			USERNAME = #{USERNAME}
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where
+			USERNAME = #{USERNAME}
+	</select>
+	
+	<!-- 商品销售报表-->
+	<select id="SalesReportlistPage" parameterType="page" resultType="pd">
+		select
+			 GOODS_NAME,
+			 sum(INCOUNT) ZCOUNT,
+			 sum(ZPRICE) ZPRICE 
+		from 
+		<include refid="tableName"></include>
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					GOODS_NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.lastStart!=null and pd.lastStart!=''"><!-- 开始时间检索 -->
+			and OUTTIME &gt;= #{pd.lastStart} 
+		</if>
+		<if test="pd.lastEnd!=null and pd.lastEnd!=''"><!-- 结束时间检索 -->
+			and OUTTIME &lt;= #{pd.lastEnd} 
+		</if>
+		<if test="pd.days!=null and pd.days!=''"><!-- 几天内的订单 -->
+			and DATE_SUB(CURDATE(), INTERVAL ${pd.days} DAY) &lt;= date(OUTTIME)
+		</if>
+		and
+			  USERNAME = #{pd.USERNAME}
+		GROUP BY GOODS_ID
+		<if test="pd.forderby!=null and pd.forderby!=''"><!-- 排序 -->
+			${pd.forderby}
+		</if>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			OUTKU_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- fh313596790qq(青苔) -->
+</mapper>

@@ -11,6 +11,10 @@
     <result column="version" property="version" jdbcType="VARCHAR" />
     <result column="brand" property="brand" jdbcType="VARCHAR" />
         <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+                <result column="cost" property="cost" jdbcType="VARCHAR" />
+                <result column="price" property="price" jdbcType="VARCHAR" />
+                   <result column="repertory" property="repertory" jdbcType="VARCHAR" />
+                      <result column="stocktaking" property="stocktaking" jdbcType="VARCHAR" />
   </resultMap>
   
   <!-- 扩展的sql -->
@@ -156,7 +160,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    product_id, product_name, product_type, image, note, status,brand,version
+    product_id, product_name, product_type, image, note, status,brand,version,cost,price,repertory,stocktaking
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.megagao.production.ssm.domain.ProductExample" >
     select
@@ -197,10 +201,11 @@
   </delete>
   <insert id="insert" parameterType="com.megagao.production.ssm.domain.Product" >
     insert into product (product_id, product_name, product_type, 
-      image, note, status,version,brand,company_id
+      image, note, status,version,brand,company_id,cost,price,stocktaking,repertory
       )
     values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{version,jdbcType=VARCHAR},#{brand,jdbcType=VARCHAR},#{companyId,jdbcType=VARCHAR}
+      #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{version,jdbcType=VARCHAR},
+      #{brand,jdbcType=VARCHAR},#{companyId,jdbcType=VARCHAR}, #{cost,jdbcType=VARCHAR},#{price,jdbcType=VARCHAR}, #{stocktaking,jdbcType=VARCHAR}, #{repertory,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.megagao.production.ssm.domain.Product" >
@@ -233,6 +238,18 @@
            <if test="companyId != null" >
         company_id,
       </if>
+         <if test="cost != null" >
+        cost,
+      </if>
+         <if test="price != null" >
+        price,
+      </if>
+       <if test="repertory != null" >
+        repertory,
+      </if>
+       <if test="stocktaking != null" >
+        stocktaking,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="productId != null" >
@@ -261,6 +278,18 @@
       </if>
         <if test="companyId != null" >
         #{companyId,jdbcType=VARCHAR},
+      </if>
+        <if test="cost != null" >
+        #{cost,jdbcType=VARCHAR},
+      </if>
+        <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+               <if test="stocktaking != null" >
+        status = #{stocktaking,jdbcType=INTEGER},
+      </if>
+        <if test="repertory != null" >
+        status = #{repertory,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -291,6 +320,24 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
+        <if test="record.brand != null" >
+        status = #{record.brand,jdbcType=INTEGER},
+      </if>
+        <if test="record.version != null" >
+        status = #{record.version,jdbcType=INTEGER},
+      </if>
+        <if test="record.cost != null" >
+        status = #{record.cost,jdbcType=INTEGER},
+      </if>
+        <if test="record.price != null" >
+        status = #{record.price,jdbcType=INTEGER},
+      </if>
+          <if test="record.stocktaking != null" >
+        status = #{record.stocktaking,jdbcType=INTEGER},
+      </if>
+        <if test="record.repertory != null" >
+        status = #{record.repertory,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -303,7 +350,13 @@
       product_type = #{record.productType,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+        brand = #{record.brand,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      cost = #{record.cost,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=INTEGER},
+      repertory =#{record.repertory,jdbcType=VARCHAR},
+        stocktaking =#{record.stocktaking,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -332,6 +385,24 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+       <if test="brand != null" >
+        status = #{brand,jdbcType=INTEGER},
+      </if>
+        <if test="version != null" >
+        status = #{version,jdbcType=INTEGER},
+      </if>
+        <if test="cost != null" >
+        status = #{cost,jdbcType=INTEGER},
+      </if>
+        <if test="price != null" >
+        status = #{price,jdbcType=INTEGER},
+      </if>
+        <if test="stocktaking != null" >
+        status = #{stocktaking,jdbcType=INTEGER},
+      </if>
+        <if test="repertory != null" >
+        status = #{repertory,jdbcType=INTEGER},
+      </if>
     </set>
     where product_id = #{productId,jdbcType=VARCHAR} and company_id = #{companyId,jdbcType=VARCHAR}
   </update>
@@ -343,7 +414,11 @@
       note = #{note,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       brand = #{brand,jdbcType=VARCHAR},
-      version = #{version,jdbcType=VARCHAR}
+      cost = #{cost,jdbcType=INTEGER},
+      price = #{price,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      repertory =#{repertory,jdbcType=VARCHAR},
+      stocktaking =#{stocktaking,jdbcType=VARCHAR}
     where product_id = #{productId,jdbcType=VARCHAR} and company_id = #{companyId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -11,6 +11,7 @@ import com.megagao.production.ssm.domain.customize.CustomResult;
 import com.megagao.production.ssm.service.ProductService;
 import com.megagao.production.ssm.domain.customize.EUDataGridResult;
 import com.megagao.production.ssm.util.SessionUtil;
+import com.sun.tools.internal.ws.processor.model.Request;
 
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,32 @@ public class ProductController {
 		return "product_list";
 	}
 
+	@RequestMapping("/display")
+	public String display() throws Exception {
+		return "product_display";
+	}
+	
+
+	@RequestMapping("/stockInsert")
+	public String stockInsert() throws Exception {
+		return "product_stockInsert";
+	}
+	
+	@RequestMapping("/stockOut")
+	public String stockOut() throws Exception {
+		return "product_Out";
+	}
+	
+	@RequestMapping("/stockBack")
+	public String stockBack() throws Exception {
+		return "product_Out";
+	}
+	
+	@RequestMapping("/stock")
+	public String stock() throws Exception {
+		return "product_stock";
+	}
+	
 	@RequestMapping("/get_data")
 	@ResponseBody
 	public List<Product> getData() throws Exception {
@@ -72,9 +99,6 @@ public class ProductController {
 			FieldError fieldError = bindingResult.getFieldError();
 			return CustomResult.build(100, fieldError.getDefaultMessage());
 		}
-//		if (productService.get(product.getProductName()) != null) {
-//			result = new CustomResult(0, "该产品已经存在，请更换产品名称！", null);
-//		} else {
 			String companyId = SessionUtil.getSessionAttribute("company_id").toString();
 			product.setCompanyId(companyId);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyymmddhhmmss");
@@ -116,7 +140,17 @@ public class ProductController {
 		}
 		return productService.updateNote(product);
 	}
-
+	
+	@RequestMapping(value = "/update_repertory")
+	@ResponseBody
+	private CustomResult updateRepertory(@Valid Product product, BindingResult bindingResult) throws Exception {
+		if (bindingResult.hasErrors()) {
+			FieldError fieldError = bindingResult.getFieldError();
+			return CustomResult.build(100, fieldError.getDefaultMessage());
+		}
+		return productService.updateNote(product);
+	}
+	
 	@RequestMapping(value = "/delete")
 	@ResponseBody
 	private CustomResult delete(String id) throws Exception {

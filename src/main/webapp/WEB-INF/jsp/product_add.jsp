@@ -16,22 +16,37 @@
 	            	<input class="easyui-textbox" type="text" name="brand" data-options="required:true"/>
 	            </td>
 	        </tr>
+	              
 	        <tr>
+	            <td>	类别:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="productType" data-options="required:true"/>
+    			</td>  
+	        </tr>
+	         <tr>
 	            <td>名称:</td>
 	            <td>
 	            	<input class="easyui-textbox" type="text" name="productName" data-options="required:true"/>
     			</td>  
 	        </tr>
-	           <tr>
+	     
+	        <tr>
             	            <td>型号:</td>
             	            <td>
             	            	<input class="easyui-textbox" type="text" name="version" data-options="required:true"/>
                 			</td>
             	        </tr>
-	        <tr>
-	            <td>	类别:</td>
+	       
+	         <tr>
+	            <td>成本:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="productType" data-options="required:true"/>
+	            	<input class="easyui-textbox" type="text" name="cost" data-options="required:true"></input>
+    			</td>  
+	        </tr>
+	          <tr>
+	            <td>售价:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="price" data-options="required:true"></input>
     			</td>  
 	        </tr>
 	        <tr>
@@ -56,6 +71,18 @@
 	            <td>
 	                <textarea style="width:800px;height:300px;visibility:hidden;" name="note"></textarea>
 	            </td>
+	        </tr>
+	        <tr>
+	            <td>系统库存:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="repertory" data-options="required:true"></input>
+    			</td>  
+	        </tr>
+	        <tr>
+	            <td>盘点库存:</td>
+	            <td>
+	            	<input class="easyui-textbox" type="text" name="stocktaking" data-options="required:true"></input>
+    			</td>  
 	        </tr>
 	    </table>
 	    <input type="hidden" name="productParams"/>

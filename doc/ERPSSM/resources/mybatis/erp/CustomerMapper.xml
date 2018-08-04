@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CustomerMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		ERP_CUSTOMER
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		NAME,	
+		AGE,	
+		PHONE,	
+		ADDRESS,	
+		QQ,	
+		WEIXIN,	
+		CTIME,	
+		MONEY,	
+		LEVEL,	
+		REMARKS1,	
+		REMARKS2,
+		USERNAME,	
+		CUSTOMER_ID
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{NAME},	
+		#{AGE},	
+		#{PHONE},	
+		#{ADDRESS},	
+		#{QQ},	
+		#{WEIXIN},	
+		#{CTIME},	
+		#{MONEY},	
+		#{LEVEL},	
+		#{REMARKS1},	
+		#{REMARKS2},
+		#{USERNAME},	
+		#{CUSTOMER_ID}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			CUSTOMER_ID = #{CUSTOMER_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			NAME = #{NAME},
+			AGE = #{AGE},
+			PHONE = #{PHONE},
+			ADDRESS = #{ADDRESS},
+			QQ = #{QQ},
+			WEIXIN = #{WEIXIN},
+			MONEY = #{MONEY},
+			LEVEL = #{LEVEL},
+			REMARKS1 = #{REMARKS1},
+			REMARKS2 = #{REMARKS2},
+		CUSTOMER_ID = CUSTOMER_ID
+		where 
+		CUSTOMER_ID = #{CUSTOMER_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			CUSTOMER_ID = #{CUSTOMER_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+			a.NAME,	
+			a.AGE,	
+			a.PHONE,	
+			a.ADDRESS,	
+			a.QQ,	
+			a.WEIXIN,	
+			a.CTIME,	
+			a.MONEY,	
+			a.LEVEL,	
+			a.REMARKS1,	
+			a.REMARKS2,
+			a.USERNAME,	
+			a.CUSTOMER_ID,
+			b.TITLE
+		from 
+		<include refid="tableName"></include> a
+		left join ERP_LEVEL b
+		on 
+			a.LEVEL = b.LEVEL_ID
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					a.NAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					a.PHONE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					or 
+					a.ADDRESS LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					or 
+					a.WEIXIN LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					or 
+					a.REMARKS1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					or 
+					a.USERNAME LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+				)
+		</if>
+		<if test="pd.lastStart!=null and pd.lastStart!=''">
+			and a.CTIME &gt;= #{pd.lastStart} 
+		</if>
+		<if test="pd.lastEnd!=null and pd.lastEnd!=''">
+			and a.CTIME &lt;= #{pd.lastEnd} 
+		</if>
+		<if test="pd.USERNAME!=null and pd.USERNAME!=''">
+			and a.USERNAME = #{pd.USERNAME} 
+		</if>
+		order by a.CTIME desc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where
+			1=1
+		<if test="USERNAME!=null and USERNAME!=''">
+			and USERNAME = #{USERNAME} 
+		</if>
+		<if test="days!=null and days!=''"><!-- 几天内 -->
+			and DATE_SUB(CURDATE(), INTERVAL ${days} DAY) &lt;= date(CTIME)
+		</if>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			CUSTOMER_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- fh313596790qq(青苔) -->
+</mapper>

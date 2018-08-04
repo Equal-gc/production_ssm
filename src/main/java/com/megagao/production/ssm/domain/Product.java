@@ -1,5 +1,6 @@
 package com.megagao.production.ssm.domain;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 public class Product {
@@ -26,8 +27,17 @@ public class Product {
 
     //@Size(max=40, message="{brand.length.error}")
     private String brand;
+    @Size(max=40, message="{brand.length.error}")
+    private String cost;
+    @Size(max=40, message="{brand.length.error}")
+    private String price;
 
     private Integer status;
+    @Min(0)
+    private String repertory;
+    
+	@Min(0)
+    private String stocktaking;
 
     public String getProductId() {
         return productId;
@@ -100,4 +110,36 @@ public class Product {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getCost() {
+		return cost;
+	}
+
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
+	public String getRepertory() {
+		return repertory;
+	}
+
+	public void setRepertory(String repertory) {
+		this.repertory = repertory;
+	}
+
+	public String getStocktaking() {
+		return stocktaking;
+	}
+
+	public void setStocktaking(String stocktaking) {
+		this.stocktaking = stocktaking;
+	}
+
 }

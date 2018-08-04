@@ -72,10 +72,10 @@
 					<ul>
 						<li id=12 data-options="attributes:{'url':'custom/find'}">客户管理</li>
 					</ul>
-					<ul>
+				<!--	<ul>
 						<li id=13 data-options="attributes:{'url':'product/find'}">产品管理</li>
 					</ul>
-					<!--
+					
 					<ul>
 						<li id=14 data-options="attributes:{'url':'work/find'}">作业管理</li>
 					</ul>
@@ -89,7 +89,19 @@
 				</li>
 			</ul>
 		</div>
-
+	<div title="仓库系统" data-options="selected:true" style="padding:10px">
+		
+			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
+				<li><span>仓库系统 </span>
+					<ul>
+						<li id=13 data-options="attributes:{'url':'product/display'}">库存信息</li>
+						<li id=42 data-options="attributes:{'url':'product/stock'}">出入库盘点</li>
+				    	<li id=13 data-options="attributes:{'url':'product/find'}">仓库管理</li>
+						<li id=45 data-options="attributes:{'url':'materialReceive/find'}">操作记录</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 		<div title="设备管理" data-options="selected:true" style="padding:10px">
 			<ul id="deviceMonitor" class="easyui-tree" data-options="animate:true,lines:true">
 				<li><span>设备管理</span>
@@ -115,22 +127,6 @@
 				</li>
 			</ul>
 		</div>
-		
-		<div title="仓库系统" data-options="selected:true" style="padding:10px">
-		
-			<ul id="materialMonitor" class="easyui-tree" data-options="animate:true,lines:true">
-				<li><span>仓库系统 </span>
-					<ul>
-						<li id=41 data-options="attributes:{'url':'material/find'}">仓库信息</li>
-						<li id=42 data-options="attributes:{'url':'materialReceive/find'}">货品出库</li>
-				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">库存盘点</li>
-						<li id=44 data-options="attributes:{'url':'materialReceive/find'}">货物返仓</li>
-						<li id=45 data-options="attributes:{'url':'materialReceive/find'}">物料收入</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		
 		<div title="售后管理" data-options="selected:true" style="padding:10px;">
 			<ul id="qualifyMonitor" class="easyui-tree"
 				data-options="animate:true,lines:true">

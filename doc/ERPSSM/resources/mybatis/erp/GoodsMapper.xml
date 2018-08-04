@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GoodsMapper">
+	
+	<!--表名 -->
+	<sql id="tableName">
+		CP_GOODS
+	</sql>
+	
+	<!-- 字段 -->
+	<sql id="Field">
+		TITLE,	
+		BIANMA,	
+		SPTYPE_ID,	
+		SPBRAND_ID,	
+		SPUNIT_ID,	
+		DESCRIPTION,	
+		SHORTDESC,	
+		USERNAME,	
+		GOODS_ID,
+		ZCOUNT
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{TITLE},	
+		#{BIANMA},	
+		#{SPTYPE_ID},	
+		#{SPBRAND_ID},	
+		#{SPUNIT_ID},	
+		#{DESCRIPTION},	
+		#{SHORTDESC},	
+		#{USERNAME},	
+		#{GOODS_ID},
+		#{ZCOUNT}
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			GOODS_ID = #{GOODS_ID}
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			TITLE = #{TITLE},
+			BIANMA = #{BIANMA},
+			SPTYPE_ID = #{SPTYPE_ID},
+			SPBRAND_ID = #{SPBRAND_ID},
+			SPUNIT_ID = #{SPUNIT_ID},
+			DESCRIPTION = #{DESCRIPTION},
+			SHORTDESC = #{SHORTDESC},
+		GOODS_ID = GOODS_ID
+		where 
+		GOODS_ID = #{GOODS_ID}
+	</update>
+	
+	<!-- 修改库存 -->
+	<update id="editKuCun" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			ZCOUNT = #{ZCOUNT}
+		where 
+		GOODS_ID = #{GOODS_ID}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include>
+		where 
+			GOODS_ID = #{GOODS_ID}
+	</select>
+	
+	<!-- 通过ID获取数据(查看详细信息) -->
+	<select id="findByIdToCha" parameterType="pd" resultType="pd">
+		select 
+			a.TITLE,	
+			a.BIANMA,	
+			a.SPTYPE_ID,	
+			a.SPBRAND_ID,	
+			a.SPUNIT_ID,	
+			a.DESCRIPTION,	
+			a.SHORTDESC,	
+			a.USERNAME,	
+			a.GOODS_ID,
+			a.ZCOUNT,
+			b.NAME BNAME,
+			C.NAME TNAME,
+			d.NAME UNAME
+		from 
+		<include refid="tableName"></include> a
+		left join cp_spbrand b
+		on a.SPBRAND_ID = b.SPBRAND_ID
+		left join cp_sptype c
+		on a.SPTYPE_ID = c.SPTYPE_ID
+		left join cp_spunit d
+		on a.SPUNIT_ID = d.SPUNIT_ID
+		where 
+			a.GOODS_ID = #{GOODS_ID}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+			a.TITLE,	
+			a.BIANMA,	
+			a.SPTYPE_ID,	
+			a.SPBRAND_ID,	
+			a.SPUNIT_ID,	
+			a.USERNAME,	
+			a.GOODS_ID,
+			a.ZCOUNT,
+			b.NAME BNAME,
+			c.NAME TNAME,
+			d.NAME UNAME
+		from 
+		<include refid="tableName"></include> a
+		left join cp_spbrand b
+		on a.SPBRAND_ID = b.SPBRAND_ID
+		left join cp_sptype c
+		on a.SPTYPE_ID = c.SPTYPE_ID
+		left join cp_spunit d
+		on a.SPUNIT_ID = d.SPUNIT_ID
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					a.TITLE LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					a.SHORTDESC LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				)
+		</if>
+		<if test="pd.USERNAME!= null and pd.USERNAME != ''">
+			and a.USERNAME = #{pd.USERNAME}
+		</if>
+		<if test="pd.SPBRAND_ID!= null and pd.SPBRAND_ID != ''">
+			and a.SPBRAND_ID = #{pd.SPBRAND_ID}
+		</if>
+		<if test="pd.SPTYPE_ID!= null and pd.SPTYPE_ID != ''">
+			and a.SPTYPE_ID = #{pd.SPTYPE_ID}
+		</if>
+		<if test="pd.isKucun!= null and pd.isKucun != ''">
+			and a.ZCOUNT != 0
+			order by a.ZCOUNT
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+			a.TITLE,	
+			a.BIANMA,	
+			a.SPTYPE_ID,	
+			a.SPBRAND_ID,	
+			a.SPUNIT_ID,	
+			a.USERNAME,	
+			a.GOODS_ID,
+			a.ZCOUNT,
+			b.NAME
+		from 
+		<include refid="tableName"></include> a
+		left join cp_spunit b
+		on a.SPUNIT_ID = b.SPUNIT_ID
+		where a.USERNAME = #{USERNAME}
+		order by a.ZCOUNT desc
+	</select>
+	
+	<!-- 通过产品编码 -->
+	<select id="listByBm" parameterType="pd" resultType="pd">
+		select
+			a.TITLE,	
+			a.BIANMA,	
+			a.SPTYPE_ID,	
+			a.SPBRAND_ID,	
+			a.SPUNIT_ID,	
+			a.USERNAME,	
+			a.GOODS_ID,
+			a.ZCOUNT,
+			b.NAME
+		from 
+		<include refid="tableName"></include> a
+		left join cp_spunit b
+		on a.SPUNIT_ID = b.SPUNIT_ID
+		where a.USERNAME = #{USERNAME}
+		and a.BIANMA = #{BIANMA}
+		order by a.ZCOUNT desc
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			GOODS_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 商品入库，增加库存 -->
+	<update id="editZCOUNT" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			ZCOUNT = ZCOUNT + #{INCOUNT}
+		where 
+			GOODS_ID = #{GOODS_ID}
+	</update>
+	
+	<!-- fh313596790qq(青苔) -->
+</mapper>
